@@ -3,7 +3,9 @@ package in.binplus.shoparounds.Fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,14 +54,14 @@ Session_management session ;
 
       session = new Session_management( getActivity() );
 
-       String name = session.getUserDetails().get(KEY_NAME );
-        String id =  session.getUserDetails().get( KEY_USER_ID ) ;
-        String add= session.getUserDetails().get( KEY_ADDRESS );
-        String pincode=session.getUserDetails().get( KEY_PINCODE );
-       String mobile= session.getUserDetails().get( KEY_MOBILE  );
-        String adhar= session.getUserDetails().get( KEY_ADHAR_ID );
-        String vname= session.getUserDetails().get( KEY_VEHICLE_NAME );
-        String v_no =session.getUserDetails().get( KEY_VEHICLE_NO  );
+       final String name = session.getUserDetails().get(KEY_NAME );
+        final String id =  session.getUserDetails().get( KEY_USER_ID ) ;
+        final String add= session.getUserDetails().get( KEY_ADDRESS );
+        final String pincode=session.getUserDetails().get( KEY_PINCODE );
+       final String mobile= session.getUserDetails().get( KEY_MOBILE  );
+        final String adhar= session.getUserDetails().get( KEY_ADHAR_ID );
+        final String vname= session.getUserDetails().get( KEY_VEHICLE_NAME );
+        final String v_no =session.getUserDetails().get( KEY_VEHICLE_NO  );
 
       user_name.setText( session.getUserDetails().get(KEY_NAME ));
       user_id.setText( session.getUserDetails().get( KEY_USER_ID ) );
@@ -72,6 +74,21 @@ Session_management session ;
        edit_profile.setOnClickListener( new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               EditProfileFragment fm = new EditProfileFragment();
+               AppCompatActivity activity = (AppCompatActivity) view.getContext();
+               Bundle args = new Bundle();
+               args.putString( "user_name" ,name );
+               args.putString( "user_id",id );
+               args.putString( "user_add",add );
+               args.putString( "user_mobile",mobile );
+               args.putString( "pincode",pincode );
+               args.putString( "adhar_no",adhar );
+               args.putString( "vehicle_no",v_no );
+               args.putString( "vehicle_name",vname );
+               fm.setArguments( args );
+               FragmentManager fragmentManager = activity.getSupportFragmentManager();
+               fragmentManager.beginTransaction().replace( R.id.frame,fm )
+                       .addToBackStack( null ).commit();
 
            }
        } );

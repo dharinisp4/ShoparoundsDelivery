@@ -1,6 +1,7 @@
 package in.binplus.shoparounds.Adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,22 +49,27 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         if (status ==0)
         {
             holder.order_status.setText("pending");
+            holder.order_status.setTextColor( Color.BLUE );
         }
        else if (status ==1)
         {
             holder.order_status.setText("confirmed");
+            holder.order_status.setTextColor( Color.GREEN );
         }
        else if (status ==2)
         {
             holder.order_status.setText("out for delivery");
+            holder.order_status.setTextColor( Color.CYAN );
         }
        else if (status ==3)
         {
             holder.order_status.setText("cancelled");
+            holder.order_status.setTextColor( Color.DKGRAY );
         }
        else if (status ==4)
         {
             holder.order_status.setText( "Delivered" );
+            holder.order_status.setTextColor( Color.RED );
         }
        int ispaid = Integer.parseInt( olist.getIs_paid() );
        if (ispaid == 0)

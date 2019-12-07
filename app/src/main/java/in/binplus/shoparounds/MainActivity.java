@@ -385,6 +385,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else if (id == R.id.nav_trans) {
             Toast.makeText(MainActivity.this,"Transactions",Toast.LENGTH_LONG).show();
             fm = new MyTransaction_Fragment();
+            args.putString( "type", "all" );
+            fm.setArguments( args );
         }
         else if (id == R.id.nav_contact_admin) {
 //            String smsNumber = "91958/4267640";

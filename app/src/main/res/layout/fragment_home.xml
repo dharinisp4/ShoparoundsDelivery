@@ -15,11 +15,203 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             >
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+            <ProgressBar
+                android:id="@+id/delivered"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="20"
+                android:maxHeight="10dip"
+                android:minHeight="50dp"
+                android:max="100"
+                android:scaleY="10"
+                android:progress="50"
+               style="@style/DeliveredOrder"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <TextView
+                            android:id="@+id/deliveredp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ppercentage"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@android:color/white"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+          <RelativeLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/delivered">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/chivo"
+                  android:layout_alignParentStart="true"
+                  android:text="Delivered Orders"
+                  android:textColor="@android:color/black"
+                  android:textSize="14dp"
+                  android:textStyle="bold"
+                  android:padding="5dp"/>
+              <TextView
+                  android:id="@+id/totald"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="@font/chivo"
+                  android:layout_alignParentEnd="true"
+                  android:text="10/100"
+                  android:textColor="@android:color/black"
+                  android:layout_marginEnd="10dp"
+                  android:textSize="14dp"
+                  />
+          </RelativeLayout>
 
 
+                </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ProgressBar
+                        android:id="@+id/pending"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="20"
+                        android:maxHeight="10dip"
+                        android:minHeight="50dp"
+                        android:max="100"
+                        android:scaleY="10"
+                        android:progress="50"
+
+                        style="@style/PendingOrder"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <TextView
+                            android:id="@+id/pendingp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ppercentage"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@android:color/white"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pending">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_alignParentStart="true"
+                            android:text="Delivered Orders"
+                            android:textColor="@android:color/black"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:id="@+id/totalp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_alignParentEnd="true"
+                            android:text="10/100"
+                            android:textColor="@android:color/black"
+                            android:textSize="14dp"
+                            android:layout_marginEnd="10dp"
+                           />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ProgressBar
+                        android:id="@+id/cancelled"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="20"
+                        android:maxHeight="10dip"
+                        android:minHeight="50dp"
+                        android:max="100"
+                        android:scaleY="10"
+                        android:progress="50"
+                        style="@style/AllOrder"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <TextView
+                            android:id="@+id/cancelledp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ppercentage"
+                            android:textAlignment="center"
+                            android:padding="10dp"
+                            android:layout_marginLeft="20dp"
+                            android:textColor="@android:color/white"
+                            android:layout_centerVertical="true"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cancelled">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_alignParentStart="true"
+                            android:text="Delivered Orders"
+                            android:textColor="@android:color/black"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:id="@+id/totalc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_alignParentEnd="true"
+                            android:text="10/100"
+                            android:textColor="@android:color/black"
+                            android:textSize="14dp"
+                            android:layout_marginEnd="10dp"
+                            />
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
         </RelativeLayout>
         <TextView

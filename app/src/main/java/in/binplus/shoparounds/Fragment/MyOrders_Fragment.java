@@ -92,7 +92,7 @@ public class MyOrders_Fragment extends Fragment {
         rv_orders.setLayoutManager( linearLayoutManager );
         rv_orders.setNestedScrollingEnabled( false );
 
-        Toast.makeText( getActivity(),"" +type +"" +id +date,Toast.LENGTH_LONG).show();
+       // Toast.makeText( getActivity(),"" +type +"" +id +date,Toast.LENGTH_LONG).show();
         if(type.equalsIgnoreCase( "upcoming" ))
         {
             heading.setText( "upcoming Orders:" );
@@ -136,7 +136,7 @@ public class MyOrders_Fragment extends Fragment {
 
 
                         try {
-                            Toast.makeText( getActivity(),""+response.toString(),Toast.LENGTH_LONG ).show();
+               //             Toast.makeText( getActivity(),""+response.toString(),Toast.LENGTH_LONG ).show();
                             for (int i =0 ;i<response.length();i++) {
                                 JSONObject object = response.getJSONObject( i );
                                 OrderModel model = new OrderModel(  );

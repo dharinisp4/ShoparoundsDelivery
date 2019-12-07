@@ -27,9 +27,6 @@ public class OrderItemModel {
     String tax;
     String is_new ;
 
-    public OrderItemModel() {
-    }
-
     public String getSale_id() {
         return sale_id;
     }

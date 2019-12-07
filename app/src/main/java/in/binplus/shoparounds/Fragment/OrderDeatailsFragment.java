@@ -16,15 +16,20 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import in.binplus.shoparounds.Adapter.OrderItemAdapter;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.Models.OrderItemModel;
@@ -41,6 +46,8 @@ public class OrderDeatailsFragment extends Fragment {
     TextView user_name , user_add ,user_mobile ;
     TextView remarks ;
     RecyclerView rv_items ;
+    private List<OrderItemModel> Order_Item_List = new ArrayList<>();
+
 
     String sale_id,user_id,on_date,time_from,time_to,status,note,is_paid,tot_amt,tot_rewrds,tot_kg,tot_items,society_id,del_add,location_id;
          String  del_charge, new_store,deliver_type,assign_to,payment_method,socity_name,pincode,house_no,r_name,r_no;
@@ -147,13 +154,17 @@ public class OrderDeatailsFragment extends Fragment {
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
-                            ArrayList<OrderItemModel> itemlist = new ArrayList<>(  );
 
-                            for (int i = 0 ;i<response.length();i++)
-                            {
-                                JsonObject object = new JsonObject();
+                            Gson gson=new Gson();
+                            Type listType = new TypeToken<List<OrderItemModel>>() {
+                            }.getType();
 
-                            }
+                            Order_Item_List = gson.fromJson(response.toString(), listType);
+
+                            OrderItemAdapter adapter = new OrderItemAdapter(Order_Item_List,getActivity());
+                            rv_items.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+
 
                         }
                     },
@@ -163,6 +174,8 @@ public class OrderDeatailsFragment extends Fragment {
 
                         }
                     } );
+
+            AppController.getInstance().addToRequestQueue(jsonArrayRequest,json_tag);
 
         }
 }

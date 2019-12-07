@@ -54,6 +54,10 @@ public class BaseURL {
    // public static String BASE_URL = "https://yourbooksstore.com/admin/";
     public static String BASE_URL = "https://shoparounds.com/admin/";
 
+    public static String IMG_PRODUCT_URL = BASE_URL + "uploads/products/";
+
+    public static String IMG_PROFILE_URL = BASE_URL + "uploads/profile/";
+
 
 
     public static String LOGIN_URL = BASE_URL + "index.php/api/delivery_boy_login";

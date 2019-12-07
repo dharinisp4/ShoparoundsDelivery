@@ -12,11 +12,12 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".MobileVerify"/>
         <activity android:name=".OtpVerification"/>
         <activity android:name=".ResetPassword"/>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

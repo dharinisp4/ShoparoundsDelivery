@@ -49,9 +49,9 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         TextView trans_date ,trans_amt ,trans_mode ;
         public ViewHolder(@NonNull View itemView) {
             super( itemView );
-            trans_date =itemView.findViewById( R.id.date_time );
-            trans_amt =itemView.findViewById( R.id.amount );
-            trans_mode=itemView.findViewById( R.id.mode );
+//            trans_date =itemView.findViewById( R.id.date_time );
+//            trans_amt =itemView.findViewById( R.id.amount );
+//            trans_mode=itemView.findViewById( R.id.mode );
 
 
         }

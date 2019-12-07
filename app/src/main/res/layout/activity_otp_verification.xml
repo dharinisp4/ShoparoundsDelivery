@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OtpVerification">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_back"
+                android:layout_width="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ic_arrow_back_black_24dp"
+                android:backgroundTint="@color/white"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:id="@+id/txt_name"
+                android:layout_toRightOf="@id/txt_back"
+                android:text="Otp Verification"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/chivo"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView"
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:src="@mipmap/ic_launcher_round"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:scaleType="centerCrop"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="#000"
+            android:fontFamily="@font/chivo"
+            android:text="Enter OTP"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iconnemail"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/iconn" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_otp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/xml_textbox_bg"
+        android:layout_margin="15dp"
+        android:maxLength="6"
+        android:fontFamily="@font/chivo"
+        android:hint="Enter One Time Password(OTP)"
+        android:inputType="number"
+        />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:text="Time Remaining :"
+android:fontFamily="@font/chivo"
+        android:textAlignment="center"
+        android:textSize="18dp"/>
+    <Button
+        android:id="@+id/btn_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verify"
+        android:fontFamily="@font/chivo"
+        android:layout_margin="15dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

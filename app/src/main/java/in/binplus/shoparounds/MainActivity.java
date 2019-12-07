@@ -1,36 +1,21 @@
 package in.binplus.shoparounds;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 
-import android.telephony.PhoneNumberUtils;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import android.text.style.URLSpan;
-import android.util.Base64;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -43,20 +28,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.android.volley.NetworkError;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import in.binplus.shoparounds.Fragment.HomeFragment;
+import in.binplus.shoparounds.Fragment.MyOrders_Fragment;
+import in.binplus.shoparounds.Fragment.MyProfile_Fragment;
+import in.binplus.shoparounds.Fragment.MyTransaction_Fragment;
 import in.binplus.shoparounds.util.ConnectivityReceiver;
-
+import in.binplus.shoparounds.util.Session_management;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ConnectivityReceiver.ConnectivityReceiverListener {
@@ -65,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView totalBudgetCount, totalBudgetCountwish, totalBudgetCount3, tv_name, powerd_text;
     private ImageView iv_profile;
 
-   // private Session_management sessionManagement;
+   private Session_management sessionManagement;
     private Menu nav_menu;
     ImageView imageView;
     TextView mTitle;
@@ -102,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Loading...");
 
-
 //
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -138,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         checkConnection();
 
-        //sessionManagement = new Session_management(MainActivity.this);
+       sessionManagement = new Session_management(MainActivity.this);
 
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -175,6 +159,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         iv_profile = (ImageView) header.findViewById(R.id.iv_header_img);
+        iv_profile.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        } );
 
 //        String getimage=sessionManagement.getUpdateProfile().get(BaseURL.KEY_IMAGE);
 //        if (!TextUtils.isEmpty(getimage)) {
@@ -262,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            androidx.fragment.app.Fragment fm = new HomeFragment();
             androidx.fragment.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.contentPanel, fm, "Home_fragment")
+                    .replace(R.id.frame, fm, "Home_fragment")
                     .setTransition( FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
 
@@ -372,71 +363,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Fragment fm = null;
+       androidx.fragment.app.Fragment fm = null;
         Bundle args = new Bundle();
-//        if (id == R.id.nav_shop_now) {
-//            fm = new Shop_Now_fragment();
-//        } else if (id == R.id.nav_my_profile) {
-//            if (sessionManagement.isLoggedIn()) {
-//                Fragment fme = new Edit_profile_fragment();
-//                FragmentManager fragmentManager = getFragmentManager();
-//                fragmentManager.beginTransaction().replace(R.id.contentPanel, fme)
-//                        .addToBackStack(null).commit();
-//            } else {
+        if (id == R.id.nav_home) {
+            Toast.makeText(MainActivity.this,"home",Toast.LENGTH_LONG).show();
+            fm = new HomeFragment();
+        } else if (id == R.id.nav_profile)
+        {
+            if (sessionManagement.isLoggedIn())
+            {
+
+           Toast.makeText(MainActivity.this,"profile",Toast.LENGTH_LONG).show();
+              fm=new MyProfile_Fragment();
+            }
+//        else {
 //                Intent i = new Intent(MainActivity.this, LoginActivity.class);
 //                startActivity(i);
 //                overridePendingTransition(0, 0);
-//            }
-//        }
-//        else if (id == R.id.nav_my_wishlist) {
-//            fm = new Wishlist_fragment();
-//        }
-//        else if (id == R.id.nav_support) {
+           }
+
+        else if (id == R.id.nav_trans) {
+            Toast.makeText(MainActivity.this,"Transactions",Toast.LENGTH_LONG).show();
+            fm = new MyTransaction_Fragment();
+        }
+        else if (id == R.id.nav_contact_admin) {
 //            String smsNumber = "91958/4267640";
 //            Intent sendIntent = new Intent("android.intent.action.MAIN");
 //            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
 //            sendIntent.putExtra("jid", PhoneNumberUtils.stripSeparators(smsNumber) + "@s.whatsapp.net");//phone number without "+" prefix
 //            startActivity(sendIntent);
-//
-//        } else if (id == R.id.nav_aboutus) {
-//            toolbar.setTitle("About");
-//            fm = new About_us_fragment();
-//            args.putString("url", BaseURL.GET_ABOUT_URL);
-//            args.putString("title", getResources().getString(R.string.nav_about));
-//            fm.setArguments(args);
-//        } else if (id == R.id.nav_policy) {
-//            fm = new Terms_and_Condition_fragment();
-//            args.putString("url", BaseURL.GET_TERMS_URL);
-//            args.putString("title", getResources().getString(R.string.nav_terms));
-//            fm.setArguments(args);
-//        } else if (id == R.id.nav_review) {
-//            //reviewOnApp();
-//        } else if (id == R.id.nav_contact) {
-//            fm = new Contact_Us_fragment();
-//            args.putString("url", BaseURL.GET_SUPPORT_URL);
-//            args.putString("title", getResources().getString(R.string.nav_terms));
-//            fm.setArguments(args);
-//        } else if (id == R.id.nav_share) {
-//            shareApp();
-//        } else if (id == R.id.nav_logout) {
-//            sessionManagement.logoutSession();
-//            finish();
-//
-//        } /*else if (id == R.id.nav_powerd) {
-//            // stripUnderlines(textView);
-//            String url = "http://sameciti.com";
-//            Intent i = new Intent(Intent.ACTION_VIEW);
-//            i.setData(Uri.parse(url));
-//            startActivity(i);
-//            finish();
-//        }*/
-//
-//        if (fm != null) {
-//            FragmentManager fragmentManager = getFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.contentPanel, fm)
-//                    .addToBackStack(null).commit();
-//        }
 
+        }
+        else if (id == R.id.nav_orders) {
+            toolbar.setTitle("Orders");
+            Toast.makeText(MainActivity.this,"orders",Toast.LENGTH_LONG).show();
+            fm = new MyOrders_Fragment();
+            args.putString( "type","all" );
+            fm.setArguments(args);
+
+        }
+         else if (id == R.id.nav_logout) {
+           Intent intent = new Intent( MainActivity.this, LoginActivity.class );
+           startActivity( intent );
+            finish();
+       }
+        if (fm != null) {
+            FragmentManager fragmentManager =getSupportFragmentManager() ;
+            fragmentManager.beginTransaction().replace(R.id.frame, fm)
+                    .addToBackStack(null).commit();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer( GravityCompat.START);
         return true;

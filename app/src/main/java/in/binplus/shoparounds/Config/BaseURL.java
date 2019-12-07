@@ -64,6 +64,7 @@ public class BaseURL {
     public static String URL_SEND_OTP = BASE_URL + "index.php/api/generate_otp";
     public static String URL_REG_OTP = BASE_URL + "index.php/api/verification_delivery_mobile";
     public static String URL_GET_ORDERS = BASE_URL + "index.php/api/delivery_boy_order";
+    public static String URL_GET_ORDERS_ITEMS = BASE_URL + "index.php/api/order_details";
 
     // global topic to receive app wide push notifications
 

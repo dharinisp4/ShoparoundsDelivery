@@ -11,8 +11,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+import in.binplus.shoparounds.AppController;
+import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.R;
+import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
+import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
+import in.binplus.shoparounds.util.Session_management;
+
+import static in.binplus.shoparounds.Config.BaseURL.KEY_ID;
 
 
 public class OrderDeatailsFragment extends Fragment {
@@ -24,7 +42,8 @@ public class OrderDeatailsFragment extends Fragment {
     String sale_id,user_id,on_date,time_from,time_to,status,note,is_paid,tot_amt,tot_rewrds,tot_kg,tot_items,society_id,del_add,location_id;
          String  del_charge, new_store,deliver_type,assign_to,payment_method,socity_name,pincode,house_no,r_name,r_no;
 
-
+    String id ;
+    Session_management session ;
     public OrderDeatailsFragment() {
         // Required empty public constructor
     }
@@ -46,6 +65,8 @@ public class OrderDeatailsFragment extends Fragment {
        user_mobile =view.findViewById( R.id.user_mobile );
        remarks =view.findViewById( R.id.tv_remarks );
        rv_items = view.findViewById( R.id.rv_order_items );
+       session = new Session_management( getActivity() );
+       id = session.getUserDetails().get( KEY_ID );
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager( getActivity(),LinearLayoutManager.VERTICAL,false );
         rv_items.setNestedScrollingEnabled( false );
@@ -108,7 +129,31 @@ public class OrderDeatailsFragment extends Fragment {
         {
            order_status.setText( "Delivered" );
         }
+        getItems( sale_id);
        return  view ;
     }
 
+        public  void getItems(String order_id )
+        {
+            HashMap<String,String> params = new HashMap<>(  );
+            params.put( "sale_id",order_id );
+
+            String json_tag ="order_items";
+
+            CustomVolleyJsonArrayRequest jsonArrayRequest = new CustomVolleyJsonArrayRequest( Request.Method.POST, BaseURL.URL_GET_ORDERS_ITEMS, params,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+                        }
+                    } );
+
+        }
 }

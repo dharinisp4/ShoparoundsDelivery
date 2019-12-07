@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.EditProfileFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_img"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:src="@mipmap/ic_launcher_round"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text=" Name"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/iconname"-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:src="@drawable/iconn" />-->
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:hint="Enter Name"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvphone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Mobile Number"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/iconnemail"-->
+<!--                    android:layout_width="10dp"-->
+<!--                    android:layout_height="10dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:src="@drawable/iconn" />-->
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+                android:maxLength="10"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:padding="10dp"
+                android:hint="Enter Mobile Number"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvadhar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Adhaar Number"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/iconad"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/iconn" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_adharno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+                android:inputType="number"
+                android:gravity="center_horizontal"
+
+                android:padding="10dp"
+                android:hint="Enter Adhaar no"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvvehicle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Vehicle Model"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/iconv"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/iconn" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_vehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+
+                android:gravity="center_horizontal"
+
+                android:padding="10dp"
+                android:hint="Enter Vehicle Model"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvvehicle_no"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Vehicle Number"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/iconnv"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/iconn" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_vehicle_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:hint="Enter vehicle number"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvadd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Address"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/iconadd"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/iconn" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+
+                android:gravity="center_horizontal"
+
+                android:padding="10dp"
+                android:hint="Enter Address"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tvpin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Pincode"
+                    android:textColor="#000"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14sp" />
+                <ImageView
+                    android:id="@+id/iconpin"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/iconn" />
+
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/et_pin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/xml_textbox_bg"
+                android:ems="10"
+                android:fontFamily="@font/chivo"
+
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:padding="10dp"
+                android:hint="Enter Pincode"
+                android:textAlignment="center"
+                android:textColor="#000"
+                android:textColorHint="@color/dark_gray"
+                android:textSize="14sp" />
+            <Button
+                android:id="@+id/btnRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:background="@drawable/bg_rounded_button"
+                android:padding="12dp"
+                android:fontFamily="@font/chivo"
+                android:gravity="center"
+                android:text="Register"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

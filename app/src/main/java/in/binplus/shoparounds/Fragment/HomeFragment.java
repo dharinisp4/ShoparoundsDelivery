@@ -105,9 +105,6 @@ String id ;
     cancelled_prog.setProgress(getPercentage( cancelled_list.size(),alllist.size() ) );
     delivered_prog.setProgress( getPercentage( delivered_list.size(),alllist.size() ) );
     pending_prog.setProgress( getPercentage( pending_list.size(),alllist.size() ) );
-//
-
-
 
    return  view ;
     }
@@ -239,8 +236,7 @@ String id ;
     }
     int getPercentage(int initial ,int finals)
     {
-        int diff = finals-initial ;
-        int p = (diff/finals)*100 ;
+        int p = (initial/finals)*100 ;
         return p ;
     }
 }

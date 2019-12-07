@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 
 import in.binplus.shoparounds.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class EditProfileFragment extends Fragment {
 
 

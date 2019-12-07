@@ -29,6 +29,14 @@ public class OrderItemAdapter extends RecyclerView.Adapter<OrderItemAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OrderItemModel model = itemList.get( position );
+        holder.item_name.setText( model.getProduct_name() );
+        holder.item_price.setText( model.getPrice() );
+        holder.item_qty.setText( model.getQty() );
+        double price = Double.parseDouble( model.getPrice() );
+        double qty =Double.parseDouble( model.getQty() );
+        double total = price*qty ;
+        holder.item_total.setText( String.valueOf( total ));
+        holder.vendor_name.setText( model.getSeller_id() );
 
 
     }

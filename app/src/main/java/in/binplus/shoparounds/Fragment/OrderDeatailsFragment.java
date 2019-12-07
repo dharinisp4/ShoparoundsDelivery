@@ -16,15 +16,18 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
+import in.binplus.shoparounds.Models.OrderItemModel;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
 import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
@@ -144,7 +147,13 @@ public class OrderDeatailsFragment extends Fragment {
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
+                            ArrayList<OrderItemModel> itemlist = new ArrayList<>(  );
 
+                            for (int i = 0 ;i<response.length();i++)
+                            {
+                                JsonObject object = new JsonObject();
+
+                            }
 
                         }
                     },

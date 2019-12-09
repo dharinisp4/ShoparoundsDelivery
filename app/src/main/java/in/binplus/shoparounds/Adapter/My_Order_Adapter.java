@@ -194,23 +194,23 @@ SharedPreferences preferences;
                 }
             } );
 
-        holder.rel_status.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                try
-                {
-                    Intent intent=new Intent( activity,OrderDetail.class );
-                    activity.startActivity( intent );
-
-                }
-                catch (Exception ex)
-                {
-                    Toast.makeText( activity,""+ex.getMessage(),Toast.LENGTH_LONG ).show();
-                }
-
-            }
-        } );
+//        holder.rel_status.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                try
+//                {
+//                    Intent intent=new Intent( activity,OrderDetail.class );
+//                    activity.startActivity( intent );
+//
+//                }
+//                catch (Exception ex)
+//                {
+//                    Toast.makeText( activity,""+ex.getMessage(),Toast.LENGTH_LONG ).show();
+//                }
+//
+//            }
+//        } );
         }
 
 

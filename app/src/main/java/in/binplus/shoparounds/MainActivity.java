@@ -28,6 +28,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -40,20 +41,24 @@ import in.binplus.shoparounds.Fragment.HomeFragment;
 import in.binplus.shoparounds.Fragment.MyOrders_Fragment;
 import in.binplus.shoparounds.Fragment.MyProfile_Fragment;
 import in.binplus.shoparounds.Fragment.MyTransaction_Fragment;
+import in.binplus.shoparounds.Fragment.NotificationFragmnet;
 import in.binplus.shoparounds.util.ConnectivityReceiver;
 import in.binplus.shoparounds.util.Session_management;
+
+import static in.binplus.shoparounds.Config.BaseURL.KEY_MOBILE;
+import static in.binplus.shoparounds.Config.BaseURL.KEY_NAME;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ConnectivityReceiver.ConnectivityReceiverListener {
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private TextView totalBudgetCount, totalBudgetCountwish, totalBudgetCount3, tv_name, powerd_text;
+    private TextView totalBudgetCount, totalBudgetCountwish, totalBudgetCount3, tv_name,tv_phone, powerd_text;
     private ImageView iv_profile;
 
    private Session_management sessionManagement;
     private Menu nav_menu;
     ImageView imageView;
-    TextView mTitle;
+    TextView mTitle ;
     LinearLayout viewpa;
     Toolbar toolbar;
     String language = "";
@@ -162,6 +167,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         iv_profile.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Fragment fm = new MyProfile_Fragment();
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace( R.id.frame,fm )
+                        .addToBackStack(null).commit();
 
 
             }
@@ -182,6 +191,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        }
 
         tv_name = (TextView) header.findViewById(R.id.tv_header_name);
+        tv_name.setText(sessionManagement.getUserDetails().get( KEY_NAME ));
+        tv_phone = (TextView) header.findViewById(R.id.tv_header_phone);
+        tv_phone.setText(sessionManagement.getUserDetails().get( KEY_MOBILE));
 //        My_Order = (LinearLayout) header.findViewById(R.id.my_orders);
 //        My_Reward = (LinearLayout) header.findViewById(R.id.my_reward);
 //        My_Walllet = (LinearLayout) header.findViewById(R.id.my_wallet);
@@ -300,20 +312,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void sideMenu() {
 
-//        if (sessionManagement.isLoggedIn()) {
-//            //  tv_number.setVisibility(View.VISIBLE);
-//            nav_menu.findItem(R.id.nav_logout).setVisible(true);
-////            nav_menu.findItem(R.id.nav_powerd).setVisible(true);
-//
-////            nav_menu.findItem(R.id.nav_user).setVisible(true);
-//        } else {
-//
-//            //tv_number.setVisibility(View.GONE);
-//
-//            nav_menu.findItem(R.id.nav_logout).setVisible(false);
-//
-//            //            nav_menu.findItem(R.id.nav_user).setVisible(false);
-//        }
+        if (sessionManagement.isLoggedIn()) {
+            //  tv_number.setVisibility(View.VISIBLE);
+            nav_menu.findItem(R.id.nav_logout).setVisible(true);
+//            nav_menu.findItem(R.id.nav_powerd).setVisible(true);
+
+//            nav_menu.findItem(R.id.nav_user).setVisible(true);
+        } else {
+
+            //tv_number.setVisibility(View.GONE);
+
+            nav_menu.findItem(R.id.nav_logout).setVisible(false);
+
+            //            nav_menu.findItem(R.id.nav_user).setVisible(false);
+        }
     }
 
     public void setFinish() {
@@ -350,6 +362,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
+        if (id == R.id.notify)
+        {
+            Fragment fm = new NotificationFragmnet();
+           FragmentManager fragmentManager = getSupportFragmentManager() ;
+            fragmentManager.beginTransaction().replace(R.id.contentPanel, fm)
+                    .addToBackStack(null).commit();
+        }
 
 
 

@@ -31,13 +31,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-
+    // implementation 'com.github.franmontiel:LocaleChanger:0.9.2'
+    implementation 'com.kyanogen.signatureview:signature-view:1.0'
     implementation 'com.android.volley:volley:1.1.0'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
-
+    implementation 'net.gotev:uploadservice:2.1'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
@@ -55,7 +55,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-appindexing:9.8.0'
     implementation 'com.raffynato:barchart:1.0'
     implementation 'com.google.code.gson:gson:2.8.0'
-
 
 
 }

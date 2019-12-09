@@ -4,59 +4,25 @@ public class OrderModel {
     String sale_id;
     String user_id;
     String on_date;
-    String delivery_time_from ;
-    String delivery_time_to ;
-    String status ;
+    String delivery_time_from;
+    String delivery_time_to;
+    String status;
     String note;
-    String is_paid ;
-    String total_amount ;
-    String total_rewards;
-    String total_kg ;
-    String total_items ;
-    String society_id;
+    String is_paid;
+    String total_amount;
+    String total_kg;
+    String total_items;
+    String socity_id;
     String delivery_address;
     String location_id;
     String delivery_charge;
-    String new_store_id ;
-    String delivery_type;
+    String new_store_id;
     String assign_to;
     String payment_method;
-    String society_name ;
-    String pincode ;
-    String house_no;
-    String recivers_name;
-    String reciver_mobile ;
-
-    public OrderModel() {
-    }
-
-    public OrderModel(String sale_id, String user_id, String on_date, String delivery_time_from, String delivery_time_to, String status, String note, String is_paid, String total_amount, String total_rewards, String total_kg, String total_items, String society_id, String delivery_address, String location_id, String delivery_charge, String new_store_id, String delivery_type, String assign_to, String payment_method, String society_name, String pincode, String house_no, String recivers_name, String reciver_mobile) {
-        this.sale_id = sale_id;
-        this.user_id = user_id;
-        this.on_date = on_date;
-        this.delivery_time_from = delivery_time_from;
-        this.delivery_time_to = delivery_time_to;
-        this.status = status;
-        this.note = note;
-        this.is_paid = is_paid;
-        this.total_amount = total_amount;
-        this.total_rewards = total_rewards;
-        this.total_kg = total_kg;
-        this.total_items = total_items;
-        this.society_id = society_id;
-        this.delivery_address = delivery_address;
-        this.location_id = location_id;
-        this.delivery_charge = delivery_charge;
-        this.new_store_id = new_store_id;
-        this.delivery_type = delivery_type;
-        this.assign_to = assign_to;
-        this.payment_method = payment_method;
-        this.society_name = society_name;
-        this.pincode = pincode;
-        this.house_no = house_no;
-        this.recivers_name = recivers_name;
-        this.reciver_mobile = reciver_mobile;
-    }
+    String socityname;
+    String house;
+    String recivername;
+    String recivermobile;
 
     public String getSale_id() {
         return sale_id;
@@ -130,14 +96,6 @@ public class OrderModel {
         this.total_amount = total_amount;
     }
 
-    public String getTotal_rewards() {
-        return total_rewards;
-    }
-
-    public void setTotal_rewards(String total_rewards) {
-        this.total_rewards = total_rewards;
-    }
-
     public String getTotal_kg() {
         return total_kg;
     }
@@ -154,12 +112,12 @@ public class OrderModel {
         this.total_items = total_items;
     }
 
-    public String getSociety_id() {
-        return society_id;
+    public String getSocity_id() {
+        return socity_id;
     }
 
-    public void setSociety_id(String society_id) {
-        this.society_id = society_id;
+    public void setSocity_id(String socity_id) {
+        this.socity_id = socity_id;
     }
 
     public String getDelivery_address() {
@@ -194,14 +152,6 @@ public class OrderModel {
         this.new_store_id = new_store_id;
     }
 
-    public String getDelivery_type() {
-        return delivery_type;
-    }
-
-    public void setDelivery_type(String delivery_type) {
-        this.delivery_type = delivery_type;
-    }
-
     public String getAssign_to() {
         return assign_to;
     }
@@ -218,43 +168,36 @@ public class OrderModel {
         this.payment_method = payment_method;
     }
 
-    public String getSociety_name() {
-        return society_name;
+    public String getSocityname() {
+        return socityname;
     }
 
-    public void setSociety_name(String society_name) {
-        this.society_name = society_name;
+    public void setSocityname(String socityname) {
+        this.socityname = socityname;
     }
 
-    public String getPincode() {
-        return pincode;
+    public void setHouse(String house) {
+        this.house = house;
     }
 
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
+    public void setRecivername(String recivername) {
+        this.recivername = recivername;
     }
 
-    public String getHouse_no() {
-        return house_no;
+    public void setRecivermobile(String recivermobile) {
+        this.recivermobile = recivermobile;
     }
 
-    public void setHouse_no(String house_no) {
-        this.house_no = house_no;
+    public String getHouse() {
+
+        return house;
     }
 
-    public String getRecivers_name() {
-        return recivers_name;
+    public String getRecivername() {
+        return recivername;
     }
 
-    public void setRecivers_name(String recivers_name) {
-        this.recivers_name = recivers_name;
-    }
-
-    public String getReciver_mobile() {
-        return reciver_mobile;
-    }
-
-    public void setReciver_mobile(String reciver_mobile) {
-        this.reciver_mobile = reciver_mobile;
+    public String getRecivermobile() {
+        return recivermobile;
     }
 }

@@ -41,7 +41,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final OrderModel olist = orderList.get( position );
         holder.order_id.setText( olist.getSale_id() );
-        holder.user_name.setText( olist.getRecivers_name() );
+       // holder.user_name.setText( olist.getRecivers_name() );
         holder.payment_method.setText( olist.getPayment_method() );
         holder.order_date_time.setText(olist.getOn_date());
         holder.order_total.setText(olist.getTotal_amount());
@@ -98,22 +98,22 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
                args.putString( "note",olist.getNote() );
                args.putString( "is_paid",olist.getIs_paid() );
                args.putString( "total_amount",olist.getTotal_amount() );
-               args.putString( "total_rewards",olist.getTotal_rewards() );
+           //    args.putString( "total_rewards",olist.getTotal_rewards() );
                args.putString( "total_kg",olist.getTotal_kg() );
                args.putString( "total_items",olist.getTotal_items() );
-               args.putString( "socity_id",olist.getSociety_id() );
+           //    args.putString( "socity_id",olist.getSociety_id() );
                args.putString( "delivery_address",olist.getDelivery_address() );
                args.putString( "location_id",olist.getLocation_id() );
                args.putString( "delivery_charge",olist.getDelivery_charge() );
                args.putString( "new_store_id",olist.getNew_store_id() );
-               args.putString( "delivery_type",olist.getDelivery_type() );
+           //    args.putString( "delivery_type",olist.getDelivery_type() );
                args.putString( "assign_to",olist.getAssign_to() );
                args.putString( "payment_method",olist.getPayment_method() );
-               args.putString( "socity_name",olist.getSociety_id() );
-               args.putString( "pincode",olist.getPincode() );
-               args.putString( "house_no",olist.getHouse_no() );
-               args.putString( "receiver_name" ,olist.getRecivers_name());
-               args.putString( "receiver_mobile",olist.getReciver_mobile() );
+//               args.putString( "socity_name",olist.getSociety_id() );
+//               args.putString( "pincode",olist.getPincode() );
+//               args.putString( "house_no",olist.getHouse_no() );
+//               args.putString( "receiver_name" ,olist.getRecivers_name());
+//               args.putString( "receiver_mobile",olist.getReciver_mobile() );
                 fm.setArguments( args );
               FragmentManager fragmentManager = activity.getSupportFragmentManager();
                fragmentManager.beginTransaction().replace( R.id.frame,fm )

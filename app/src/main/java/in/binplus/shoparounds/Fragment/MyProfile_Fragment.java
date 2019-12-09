@@ -55,6 +55,8 @@ Session_management session ;
       session = new Session_management( getActivity() );
 
        final String name = session.getUserDetails().get(KEY_NAME );
+
+
         final String id =  session.getUserDetails().get( KEY_USER_ID ) ;
         final String add= session.getUserDetails().get( KEY_ADDRESS );
         final String pincode=session.getUserDetails().get( KEY_PINCODE );

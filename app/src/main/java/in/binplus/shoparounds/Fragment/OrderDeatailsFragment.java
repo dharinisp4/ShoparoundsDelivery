@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ import static in.binplus.shoparounds.Config.BaseURL.KEY_ID;
 public class OrderDeatailsFragment extends Fragment {
     TextView order_id, order_total ,order_time , order_items ,order_payment ,order_status ;
     TextView user_name , user_add ,user_mobile ;
-    TextView remarks ;
+    EditText remarks ;
     RecyclerView rv_items ;
     private List<OrderItemModel> Order_Item_List = new ArrayList<>();
 
@@ -73,7 +74,7 @@ public class OrderDeatailsFragment extends Fragment {
        user_name =view.findViewById( R.id.user_name );
        user_add =view.findViewById( R.id.user_add );
        user_mobile =view.findViewById( R.id.user_mobile );
-       remarks =view.findViewById( R.id.tv_remarks );
+       remarks =view.findViewById( R.id.et_remarks );
        rv_items = view.findViewById( R.id.rv_order_items );
        session = new Session_management( getActivity() );
        id = session.getUserDetails().get( KEY_ID );

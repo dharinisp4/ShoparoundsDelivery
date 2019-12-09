@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+android:layout_margin="5dp"
+
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/vendor_img"
+            android:layout_centerInParent="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher_round"/>
+        <TextView
+            android:layout_below="@id/vendor_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_name"
+            android:textAlignment="center"
+            android:fontFamily="@font/chivo"
+            android:textSize="16dp"
+            android:padding="5dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@android:color/black"
+            android:text="name"/>
+
+        <LinearLayout
+            android:layout_below="@id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/dark_gray"/>
+
+
+
+    </RelativeLayout>
+        <LinearLayout
+        android:layout_below="@id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_gray"/>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:id="@+id/txt_number"
+            android:textAlignment="center"
+            android:fontFamily="@font/chivo"
+            android:textSize="16dp"
+            android:layout_gravity="center_vertical"
+            android:text="8081031624"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            />
+        <Button
+            android:id="@+id/btn_call"
+            android:background="@color/colorPrimary"
+            android:text="Call"
+            android:fontFamily="@font/chivo"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+        <LinearLayout
+        android:layout_below="@id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:orientation="horizontal"
+       android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:id="@+id/txt_email"
+            android:textAlignment="center"
+            android:fontFamily="@font/chivo"
+            android:textSize="14dp"
+            android:layout_gravity="center_vertical"
+            android:text="anasmansoori734@gmail.com"
+            android:padding="5dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+        <LinearLayout
+        android:layout_below="@id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_add"
+            android:fontFamily="@font/chivo"
+            android:textSize="15dp"
+            android:text="PickUp Address:"
+            android:padding="1dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+
+            android:id="@+id/txt_address"
+            android:textAlignment="center"
+            android:fontFamily="@font/chivo"
+            android:textSize="12dp"
+            android:text="PickUp Address:"
+            android:padding="1dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+        <LinearLayout
+        android:layout_below="@id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_gray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+       >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/city"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/chivo"
+            android:textSize="15dp"
+            android:text="City :"
+            android:padding="1dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/txt_city"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chivo"
+          android:paddingBottom="10dp"
+            android:text="Jhansi"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="12dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/dark_gray"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/pincode"
+            android:fontFamily="@font/chivo"
+            android:textSize="15dp"
+            android:text="Pincode :"
+            android:padding="1dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:layout_width="match_parent"
+
+            android:id="@+id/txt_pincode"
+            android:textAlignment="center"
+            android:fontFamily="@font/chivo"
+            android:textSize="12dp"
+            android:paddingBottom="10dp"
+            android:text="206215"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black"
+            android:layout_height="wrap_content"
+
+            />
+
+    </LinearLayout>
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/dark_gray"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_gravity="end"
+        android:layout_below="@id/lin"
+        android:fontFamily="@font/chivo"
+        android:textColor="@color/white"
+        android:text="OK"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_rounded_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

@@ -43,7 +43,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.ViewHolder
         holder.order_id.setText( olist.getSale_id() );
         holder.user_name.setText( olist.getRecivers_name() );
         holder.payment_method.setText( olist.getPayment_method() );
-
+        holder.order_date_time.setText(olist.getOn_date());
+        holder.order_total.setText(olist.getTotal_amount());
        // holder.vendor_name.setText( olist.get );
         int status = Integer.parseInt( olist.getStatus() );
         if (status ==0)

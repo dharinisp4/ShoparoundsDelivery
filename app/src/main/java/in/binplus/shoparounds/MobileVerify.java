@@ -154,7 +154,7 @@ ProgressDialog progressDialog ;
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Module module=new Module();
+                Module module=new Module(MobileVerify.this);
                 String errormsg = module.VolleyErrorMessage(error);
                 Toast.makeText( MobileVerify.this,""+ errormsg, Toast.LENGTH_LONG ).show();
             }
@@ -204,7 +204,7 @@ ProgressDialog progressDialog ;
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                Module module=new Module();
+                Module module=new Module(MobileVerify.this);
                 String errormsg = module.VolleyErrorMessage(error);
                 Toast.makeText( MobileVerify.this,""+ errormsg, Toast.LENGTH_LONG ).show();
             }

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,6 +128,7 @@ public class MyOrders_Fragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        Log.d("on_date",response.toString());
                         ArrayList<OrderModel> alllist = new ArrayList<>(  );
                         ArrayList<OrderModel> pending_list = new ArrayList<>(  );
                         ArrayList<OrderModel> delivered_list= new ArrayList<>(  );
@@ -166,7 +168,7 @@ public class MyOrders_Fragment extends Fragment {
                                 model.setReciver_mobile( object.getString( "receiver_mobile" ) );
 
                                 alllist.add( model );
-
+                              boolean sts=compareDate(object.get( "on_date" ).toString());
                                 int status = Integer.parseInt( object.getString( "status" ) );
                                 if (status == 2)
                                 {
@@ -176,10 +178,13 @@ public class MyOrders_Fragment extends Fragment {
                                 {
                                     delivered_list.add( model );
                                 }
-                                else if (date.equals( object.get( "on_date" ) ))
+                                if (sts==true)
                                 {
+
                                     today_list.add( model );
                                 }
+
+                               // Toast.makeText(getActivity(),""+compareDate(object.get( "on_date" ).toString()),Toast.LENGTH_LONG).show();
 
 
                             }
@@ -197,6 +202,7 @@ public class MyOrders_Fragment extends Fragment {
                             }
                             else if( type.equalsIgnoreCase( "todays" ))
                             {
+                                //Toast.makeText(getActivity(),""+today_list.size(),Toast.LENGTH_LONG).show();
                                 ordersAdapter = new OrdersAdapter( today_list,getActivity());
                                 rv_orders.setAdapter( ordersAdapter );
                                 ordersAdapter.notifyDataSetChanged();
@@ -225,5 +231,34 @@ public class MyOrders_Fragment extends Fragment {
 
        AppController.getInstance().addToRequestQueue( jsonArrayRequest,"orders_tag" );
 
+    }
+
+    public boolean compareDate(String order_date)
+    {
+        boolean st=false;
+        try
+        {
+            Date date=new Date();
+
+            SimpleDateFormat format1=new SimpleDateFormat("yyyy-MM-dd");
+            String cdt=format1.format(date);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = sdf.parse(cdt);
+            Date date2 = sdf.parse(order_date);
+            if (date1.compareTo(date2) == 0) {
+                st=true;
+            }
+            else
+            {
+                st=false;
+            }
+        }
+        catch (Exception ex)
+        {
+           Toast.makeText(getActivity(),""+ex.getMessage(),Toast.LENGTH_LONG).show();
+
+        }
+
+        return st;
     }
 }

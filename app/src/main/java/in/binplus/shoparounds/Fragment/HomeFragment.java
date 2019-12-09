@@ -45,11 +45,11 @@ TextView order_id ,order_amt , vendor_name ,vendor_add,vendor_mobile ,user_name,
 ProgressBar delivered_prog ,pending_prog ,cancelled_prog ;
 Session_management session ;
 TextView del_percent ,can_percent ,pending_per ,del_tot , cancel_tot,pending_tot ;
-    ArrayList<OrderModel> alllist = new ArrayList<>(  );
-    ArrayList<OrderModel> pending_list = new ArrayList<>(  );
-    ArrayList<OrderModel> delivered_list= new ArrayList<>(  );
-    ArrayList<OrderModel> cancelled_list = new ArrayList<>(  );
-    ArrayList<OrderModel> today_list = new ArrayList<>(  );
+    ArrayList<OrderModel> alllist ;
+    ArrayList<OrderModel> pending_list;
+    ArrayList<OrderModel> delivered_list;
+    ArrayList<OrderModel> cancelled_list;
+    ArrayList<OrderModel> today_list;
 
 String id ;
     public HomeFragment() {
@@ -82,6 +82,11 @@ String id ;
     del_percent=view.findViewById( R.id.deliveredp );
     del_tot =view.findViewById( R.id.totald );
 
+        alllist = new ArrayList<>(  );
+         pending_list = new ArrayList<>(  );
+         delivered_list= new ArrayList<>(  );
+         cancelled_list = new ArrayList<>(  );
+         today_list = new ArrayList<>(  );
 
     pending_prog=view.findViewById( R.id.pending );
     pending_per=view.findViewById( R.id.pendingp );
@@ -98,15 +103,20 @@ String id ;
     card_delivered.setOnClickListener( this );
 
     id =session.getUserDetails().get( "id" );
-    getOrders( id );
 
     String totpending = String.valueOf( pending_list.size() );
 
-    cancelled_prog.setProgress(getPercentage( cancelled_list.size(),alllist.size() ) );
-    delivered_prog.setProgress( getPercentage( delivered_list.size(),alllist.size() ) );
-    pending_prog.setProgress( getPercentage( pending_list.size(),alllist.size() ) );
+
 
    return  view ;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getOrders( id );
+
+
     }
 
     @Override
@@ -158,6 +168,10 @@ String id ;
         HashMap<String ,String> params = new HashMap<>(  );
         params.put( "d_id",id );
 
+        pending_list.clear();
+        alllist.clear();
+        cancelled_list.clear();
+        delivered_list.clear();
         CustomVolleyJsonArrayRequest jsonArrayRequest = new CustomVolleyJsonArrayRequest( Request.Method.POST, BaseURL.URL_GET_ORDERS, params,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -215,7 +229,20 @@ String id ;
 
 
                             }
+//                            cancelled_prog.setMax(alllist.size());
+//                            delivered_prog.setMax(alllist.size());
+//                            pending_prog.setMax(alllist.size());
+                            del_tot.setText(delivered_list.size()+"/"+alllist.size());
+                            pending_tot.setText(pending_list.size()+"/"+alllist.size());
+                            cancel_tot.setText(cancelled_list.size()+"/"+alllist.size());
 
+                            pending_per.setText(""+getPercentage( pending_list.size(),alllist.size() )+" %");
+                            del_percent.setText(""+getPercentage( delivered_list.size(),alllist.size() )+" %");
+                            can_percent.setText(""+getPercentage( cancelled_list.size(),alllist.size() )+" %");
+                           // Toast.makeText(getActivity(),"pen :- "+getPercentage( pending_list.size(),alllist.size() )+"\n del:-  "+getPercentage( delivered_list.size(),alllist.size() )+"can :- "+getPercentage( cancelled_list.size(),alllist.size() )+"\n all:- "+alllist.size(),Toast.LENGTH_LONG).show();
+    cancelled_prog.setProgress(getPercentage( cancelled_list.size(),alllist.size() ) );
+    delivered_prog.setProgress( getPercentage( delivered_list.size(),alllist.size() ) );
+    pending_prog.setProgress( getPercentage( pending_list.size(),alllist.size() ) );
 
 
                         } catch (JSONException e) {
@@ -236,7 +263,7 @@ String id ;
     }
     int getPercentage(int initial ,int finals)
     {
-        int p = (initial/finals)*100 ;
+        int p = (initial*100)/finals;
         return p ;
     }
 }

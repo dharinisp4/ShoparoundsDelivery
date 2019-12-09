@@ -9,23 +9,48 @@ public class OrderItemModel {
     String unit ;
     String unit_value ;
     String price ;
-    String qty_in_kg ;
-    String rewards ;
-    String book_class ;
-    String subject ;
-    String language ;
-    String seller_id ;
-    String product_arb_name;
-    String description ;
-    String product_arb_desc ;
-    String product_img ;
-    String category_id ;
-    String in_stock ;
-    String mrp ;
-    String brand ;
-    String increament ;
-    String tax;
-    String is_new ;
+    String user_id ;
+    String user_name;
+    String user_email;
+    String user_phone ;
+    String user_fullname ;
+    String product_image ;
+    String user_image;
+    String user_address;
+    String user_pincode;
+    String city_name;
+
+    public String getUser_image() {
+        return user_image;
+    }
+
+    public void setUser_image(String user_image) {
+        this.user_image = user_image;
+    }
+
+    public String getUser_address() {
+        return user_address;
+    }
+
+    public void setUser_address(String user_address) {
+        this.user_address = user_address;
+    }
+
+    public String getUser_pincode() {
+        return user_pincode;
+    }
+
+    public void setUser_pincode(String user_pincode) {
+        this.user_pincode = user_pincode;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
+    }
 
     public String getSale_id() {
         return sale_id;
@@ -91,139 +116,51 @@ public class OrderItemModel {
         this.price = price;
     }
 
-    public String getQty_in_kg() {
-        return qty_in_kg;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setQty_in_kg(String qty_in_kg) {
-        this.qty_in_kg = qty_in_kg;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
     }
 
-    public String getRewards() {
-        return rewards;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setRewards(String rewards) {
-        this.rewards = rewards;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public String getBook_class() {
-        return book_class;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setBook_class(String book_class) {
-        this.book_class = book_class;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getUser_phone() {
+        return user_phone;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setUser_phone(String user_phone) {
+        this.user_phone = user_phone;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getUser_fullname() {
+        return user_fullname;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setUser_fullname(String user_fullname) {
+        this.user_fullname = user_fullname;
     }
 
-    public String getSeller_id() {
-        return seller_id;
+    public String getProduct_image() {
+        return product_image;
     }
 
-    public void setSeller_id(String seller_id) {
-        this.seller_id = seller_id;
-    }
-
-    public String getProduct_arb_name() {
-        return product_arb_name;
-    }
-
-    public void setProduct_arb_name(String product_arb_name) {
-        this.product_arb_name = product_arb_name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getProduct_arb_desc() {
-        return product_arb_desc;
-    }
-
-    public void setProduct_arb_desc(String product_arb_desc) {
-        this.product_arb_desc = product_arb_desc;
-    }
-
-    public String getProduct_img() {
-        return product_img;
-    }
-
-    public void setProduct_img(String product_img) {
-        this.product_img = product_img;
-    }
-
-    public String getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
-    }
-
-    public String getIn_stock() {
-        return in_stock;
-    }
-
-    public void setIn_stock(String in_stock) {
-        this.in_stock = in_stock;
-    }
-
-    public String getMrp() {
-        return mrp;
-    }
-
-    public void setMrp(String mrp) {
-        this.mrp = mrp;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getIncreament() {
-        return increament;
-    }
-
-    public void setIncreament(String increament) {
-        this.increament = increament;
-    }
-
-    public String getTax() {
-        return tax;
-    }
-
-    public void setTax(String tax) {
-        this.tax = tax;
-    }
-
-    public String getIs_new() {
-        return is_new;
-    }
-
-    public void setIs_new(String is_new) {
-        this.is_new = is_new;
+    public void setProduct_image(String product_image) {
+        this.product_image = product_image;
     }
 }

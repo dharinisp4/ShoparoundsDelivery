@@ -20,21 +20,61 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/order_id"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="order_id"
-                android:textAlignment="center"
-                android:textSize="16dp"
-                android:fontFamily="@font/chivo"
-                android:textStyle="bold"
-                android:textColor="@android:color/black"
-                android:padding="5dp"/>
-            <LinearLayout
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/pnding"/>
+                <TextView
+                    android:id="@+id/order_total"
+                    android:layout_toRightOf="@id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="order_id"
+
+                    android:textSize="16dp"
+                    android:fontFamily="@font/chivo"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:padding="1dp"/>
+
+                <TextView
+                    android:id="@+id/order_time"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_height="wrap_content"
+                    android:text="order_id"
+
+                    android:textSize="16dp"
+                    android:fontFamily="@font/chivo"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/order_id"
+                    android:layout_below="@id/order_total"
+                    android:layout_toRightOf="@id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="order_id"
+                    android:textAlignment="center"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/chivo"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"
+                    android:padding="1dp"/>
+
+            </RelativeLayout>
+              <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                  android:visibility="gone"
                 android:weightSum="2">
                 <TextView
                     android:layout_width="0dp"
@@ -46,23 +86,12 @@
                     android:fontFamily="@font/chivo"
                     android:textColor="@android:color/black"
                     android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/order_total"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="order_id"
-
-                    android:textSize="16dp"
-                    android:fontFamily="@font/chivo"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"
-                    android:padding="5dp"/>
-            </LinearLayout>
+                   </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:weightSum="2">
                 <TextView
                     android:layout_width="0dp"
@@ -74,18 +103,61 @@
                     android:fontFamily="@font/chivo"
                     android:textColor="@android:color/black"
                     android:padding="5dp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4">
                 <TextView
-                    android:id="@+id/order_time"
+                    android:layout_width="0dp"
+                    android:layout_weight="1.2"
+                    android:layout_height="wrap_content"
+                    android:text="Mode of Payment:"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/chivo"
+                    android:textColor="@android:color/black"
+                    android:padding="2dp"/>
+                <TextView
+                    android:id="@+id/order_payment"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="order_id"
-
-                    android:textSize="16dp"
+                    android:textSize="12dp"
                     android:fontFamily="@font/chivo"
                     android:textStyle="bold"
+
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Order Status:"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/chivo"
                     android:textColor="@android:color/black"
                     android:padding="5dp"/>
+                <TextView
+                    android:id="@+id/order_status"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="order_id"
+                    android:textSize="12dp"
+                    android:fontFamily="@font/chivo"
+                    android:textStyle="bold"
+
+                    android:padding="5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,10 +167,12 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:gravity="end"
                     android:layout_height="wrap_content"
                     android:text="Total items:"
 
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:fontFamily="@font/chivo"
                     android:textColor="@android:color/black"
                     android:padding="5dp"/>
@@ -109,64 +183,13 @@
                     android:layout_height="wrap_content"
                     android:text="order_id"
 
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     android:fontFamily="@font/chivo"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"
                     android:padding="5dp"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Mode of Payment:"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/chivo"
-                    android:textColor="@android:color/black"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/order_payment"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="order_id"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/chivo"
-                    android:textStyle="bold"
 
-                    android:padding="5dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="Order Status:"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/chivo"
-                    android:textColor="@android:color/black"
-                    android:padding="5dp"/>
-                <TextView
-                    android:id="@+id/order_status"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="order_id"
-                    android:textSize="16dp"
-                    android:fontFamily="@font/chivo"
-                    android:textStyle="bold"
-
-                    android:padding="5dp"/>
-            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 <androidx.cardview.widget.CardView
@@ -181,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ordered Items"
-            android:textAlignment="center"
+
             android:textSize="16dp"
             android:fontFamily="@font/chivo"
             android:textStyle="bold"
@@ -459,7 +482,7 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
@@ -470,25 +493,54 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Remarks"
+                android:text="Feedback"
+                android:background="@color/white"
                 android:textAlignment="center"
                 android:textSize="16dp"
                 android:fontFamily="@font/chivo"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 android:padding="5dp"/>
-            <TextView
-                android:id="@+id/tv_remarks"
+            <EditText
+                android:id="@+id/et_remarks"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Remarks"
+                android:layout_height="100dp"
                 android:textAlignment="center"
                 android:textSize="16dp"
+                android:background="@drawable/xml_textbox_bg"
                 android:fontFamily="@font/chivo"
-
+                android:hint="Enter Comment"
                 android:padding="5dp"/>
+
+            <Button
+                android:id="@+id/btn_delivered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_button"
+                android:padding="12dp"
+                android:fontFamily="@font/chivo"
+                android:gravity="center"
+                android:text="Delivered"
+                android:textAllCaps="false"
+                android:layout_marginTop="10dp"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+            <Button
+                android:textAllCaps="false"
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_button"
+                android:padding="12dp"
+                android:fontFamily="@font/chivo"
+                android:gravity="center"
+                android:text="Cancel"
+
+                android:textColor="#fff"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp" />
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </LinearLayout>
     </ScrollView>
 </RelativeLayout>

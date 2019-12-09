@@ -11,105 +11,121 @@
         android:layout_centerVertical="true"
         android:src="@mipmap/ic_launcher_round"/>
     <LinearLayout
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/item_img"
         android:layout_margin="5dp"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_name"
-            android:fontFamily="@font/chivo"
-            android:textSize="16dp"
-            android:padding="5dp"
-            android:textColor="@android:color/black"
-            android:text="name"/>
+        android:weightSum="10"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
             android:layout_height="wrap_content"
-           android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/item_mrp"
-
-            android:fontFamily="@font/chivo"
-            android:textSize="14dp"
-            android:padding="2dp"
-            android:text="name"/>
+            android:layout_weight="7">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/item_name"
                 android:fontFamily="@font/chivo"
                 android:textSize="16dp"
-                android:padding="2dp"
-                android:textAlignment="center"
-                android:text="*"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_qty"
-
-        android:padding="2dp"
-        android:fontFamily="@font/chivo"
-        android:textSize="14dp"
-        android:text="name"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/chivo"
-                android:textSize="16dp"
-                android:padding="2dp"
-                android:textAlignment="center"
-                android:text="="/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/item_total"
-                android:fontFamily="@font/chivo"
-                android:textSize="14dp"
-                android:padding="2dp"
+                android:padding="5dp"
+                android:textColor="@android:color/black"
                 android:text="name"/>
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_mrp"
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14dp"
+                    android:padding="2dp"
+                    android:text="name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="16dp"
+                    android:padding="2dp"
+                    android:textAlignment="center"
+                    android:text="*"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_qty"
+
+                    android:padding="2dp"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14dp"
+                    android:text="name"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="16dp"
+                    android:padding="2dp"
+                    android:textAlignment="center"
+                    android:text="="/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_total"
+                    android:fontFamily="@font/chivo"
+                    android:textSize="14dp"
+                    android:padding="2dp"
+                    android:text="name"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/chivo"
-            android:textSize="14dp"
-            android:paddingLeft="5dp"
-            android:textColor="@color/text_color"
-            android:text="Vendor Details:- "/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/vendor_name"
-            android:fontFamily="@font/chivo"
-            android:textSize="14dp"
-            android:padding="2dp"
-            android:text="name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/vendor_add"
-            android:fontFamily="@font/chivo"
-            android:textSize="14dp"
-            android:padding="2dp"
-            android:text="name"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/vendor_phone"
-            android:fontFamily="@font/chivo"
-            android:textSize="14dp"
-            android:padding="2dp"
-            android:text="name"/>
+            android:layout_weight="3">
+            <Button
+                android:id="@+id/btn_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pickup\n Details"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_rounded_button"
+                android:textAllCaps="false"/>
+        </RelativeLayout>
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/vendor_name"-->
+<!--            android:fontFamily="@font/chivo"-->
+<!--            android:textSize="14dp"-->
+<!--            android:padding="2dp"-->
+<!--            android:text="name"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/vendor_add"-->
+<!--            android:fontFamily="@font/chivo"-->
+<!--            android:textSize="14dp"-->
+<!--            android:padding="2dp"-->
+<!--            android:text="name"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/vendor_phone"-->
+<!--            android:fontFamily="@font/chivo"-->
+<!--            android:textSize="14dp"-->
+<!--            android:padding="2dp"-->
+<!--            android:text="name"/>-->
     </LinearLayout>
 
 </RelativeLayout>

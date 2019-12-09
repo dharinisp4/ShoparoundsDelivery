@@ -9,550 +9,549 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            >
-            <LinearLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-            <ProgressBar
-                android:id="@+id/delivered"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_weight="20"
-                android:maxHeight="10dip"
-                android:minHeight="50dp"
-                android:max="100"
-                android:scaleY="10"
-                android:progress="50"
-               style="@style/DeliveredOrder"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
-                        <TextView
-                            android:id="@+id/deliveredp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ppercentage"
-                            android:textAlignment="center"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@android:color/white"
-                            android:layout_centerVertical="true"
-                            />
-                    </RelativeLayout>
-
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_below="@+id/delivered">
-
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:fontFamily="@font/chivo"
-                  android:layout_alignParentStart="true"
-                  android:text="Delivered Orders"
-                  android:textColor="@android:color/black"
-                  android:textSize="14dp"
-                  android:textStyle="bold"
-                  android:padding="5dp"/>
-              <TextView
-                  android:id="@+id/totald"
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:fontFamily="@font/chivo"
-                  android:layout_alignParentEnd="true"
-                  android:text="10/100"
-                  android:textColor="@android:color/black"
-                  android:layout_marginEnd="10dp"
-                  android:textSize="14dp"
-                  />
-          </RelativeLayout>
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ProgressBar
-                        android:id="@+id/pending"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="20"
-                        android:maxHeight="10dip"
-                        android:minHeight="50dp"
-                        android:max="100"
-                        android:scaleY="10"
-                        android:progress="50"
-
-                        style="@style/PendingOrder"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
-                        <TextView
-                            android:id="@+id/pendingp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ppercentage"
-                            android:textAlignment="center"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@android:color/white"
-                            android:layout_centerVertical="true"
-                            />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/pending">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="Delivered Orders"
-                            android:textColor="@android:color/black"
-                            android:textSize="14dp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:id="@+id/totalp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentEnd="true"
-                            android:text="10/100"
-                            android:textColor="@android:color/black"
-                            android:textSize="14dp"
-                            android:layout_marginEnd="10dp"
-                           />
-                    </RelativeLayout>
-
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ProgressBar
-                        android:id="@+id/cancelled"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_weight="20"
-                        android:maxHeight="10dip"
-                        android:minHeight="50dp"
-                        android:max="100"
-                        android:scaleY="10"
-                        android:progress="50"
-                        style="@style/AllOrder"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp">
-                        <TextView
-                            android:id="@+id/cancelledp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ppercentage"
-                            android:textAlignment="center"
-                            android:padding="10dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@android:color/white"
-                            android:layout_centerVertical="true"
-                            />
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/cancelled">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="Delivered Orders"
-                            android:textColor="@android:color/black"
-                            android:textSize="14dp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:id="@+id/totalc"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentEnd="true"
-                            android:text="10/100"
-                            android:textColor="@android:color/black"
-                            android:textSize="14dp"
-                            android:layout_marginEnd="10dp"
-                            />
-                    </RelativeLayout>
-
-
-                </RelativeLayout>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Ongoing Order:"
-            android:layout_margin="10dp"
-            android:padding="5dp"
-            android:visibility="gone"
-            android:textStyle="bold"/>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_current_order"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="5dp"
-            android:visibility="gone"
-            app:cardElevation="5dp">
-            <LinearLayout
-                android:id="@+id/current_order"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                   >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/order_id"
-                        android:fontFamily="@font/chivo"
-                        android:layout_alignParentStart="true"
-                        android:text="order id "
-                        android:layout_marginLeft="5dp"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        android:textStyle="bold"
-                        android:padding="5dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/order_amount"
-                        android:fontFamily="@font/chivo"
-                        android:text="order total "
-                        android:layout_marginRight="10dp"
-                        android:layout_alignParentEnd="true"
-                        android:textColor="@android:color/black"
-                        android:textSize="18dp"
-                        android:padding="5dp"/>
-
-                </RelativeLayout>
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="Pick Up from: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/vendor_name"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="Vendor name "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/vendor_add"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="vendor add "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="16dp"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/vendor_mobile"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="vendor mobile "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="16dp"
-                            android:padding="5dp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="Deliver To: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/user_name"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="user name"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="18dp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/user_add"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="user add "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="16dp"
-                            android:padding="5dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/user_mobile"
-                            android:fontFamily="@font/chivo"
-                            android:layout_alignParentStart="true"
-                            android:text="user mobile"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@android:color/black"
-                            android:textSize="16dp"
-                            android:padding="5dp"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:weightSum="2"
-           >
-           <androidx.cardview.widget.CardView
-               android:id="@+id/card_upcoming"
-               android:layout_width="0dp"
-               android:layout_height="120dp"
-               app:cardCornerRadius="10dp"
-               android:layout_weight="1"
-               app:cardElevation="5dp"
-               android:layout_margin="5dp"
-               app:cardBackgroundColor="@color/colorPrimary"
-               >
-               <RelativeLayout
-                   android:id="@+id/rel_upcoming"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_gravity="center_vertical"
-                   android:paddingTop="15dp"
-                   >
-                   <ImageView
-                       android:id="@+id/img1"
-                       android:layout_width="60dp"
-                       android:layout_height="60dp"
-                       android:layout_centerHorizontal="true"
-
-                       android:background="@drawable/shoppingbag"
-                       android:backgroundTint="@color/white"
-                       />
-                   <TextView
-                       android:layout_below="@+id/img1"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/chivo"
-                       android:layout_centerHorizontal="true"
-                       android:text="Upcoming Orders"
-                       android:textStyle="bold"
-                       android:textColor="@color/white"
-                       android:textSize="16dp"/>
-
-               </RelativeLayout>
-           </androidx.cardview.widget.CardView>
-           <androidx.cardview.widget.CardView
-               android:id="@+id/card_delivered"
-               android:layout_width="0dp"
-               android:layout_height="120dp"
-               app:cardCornerRadius="10dp"
-               android:layout_weight="1"
-               app:cardElevation="5dp"
-               android:layout_margin="5dp"
-               app:cardBackgroundColor="@color/colorPrimary"
-               >
-               <RelativeLayout
-                   android:id="@+id/rel_delivered"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_gravity="center_vertical"
-                   android:paddingTop="15dp"
-                   >
-                   <ImageView
-                       android:id="@+id/img2"
-                       android:layout_width="60dp"
-                       android:layout_height="60dp"
-                       android:layout_centerHorizontal="true"
-                       android:background="@drawable/invoice"
-                       android:backgroundTint="@color/white"
-                       />
-                   <TextView
-                       android:layout_below="@+id/img2"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:fontFamily="@font/chivo"
-                       android:layout_centerHorizontal="true"
-                       android:text="Delivered Orders"
-                       android:textStyle="bold"
-                       android:textColor="@color/white"
-                       android:textSize="16dp"/>
-
-               </RelativeLayout>
-           </androidx.cardview.widget.CardView>
-       </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            >
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_income"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                app:cardCornerRadius="10dp"
-                android:layout_weight="1"
-                app:cardElevation="5dp"
-                android:layout_margin="5dp"
-                app:cardBackgroundColor="@color/colorPrimary"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 >
-                <RelativeLayout
-                    android:id="@+id/rel_income"
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:paddingTop="15dp"
-                    >
-                    <ImageView
-                        android:id="@+id/img4"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ProgressBar
+                            android:id="@+id/delivered"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="20"
+                            android:maxHeight="10dip"
+                            android:minHeight="50dp"
+                            android:scaleY="10"
+                            android:progress="50"
+                            style="@style/DeliveredOrder"/>
 
-                        android:background="@drawable/bill"
-                        android:backgroundTint="@color/white"
-                        />
-                    <TextView
-                        android:layout_below="@+id/img4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/chivo"
-                        android:layout_centerHorizontal="true"
-                        android:text="Todays Income"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="16dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+                            <TextView
+                                android:id="@+id/deliveredp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ppercentage"
+                                android:textAlignment="center"
+                                android:padding="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@android:color/white"
+                                android:layout_centerVertical="true"
+                                />
+                        </RelativeLayout>
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/delivered">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Delivered Orders"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:id="@+id/totald"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentEnd="true"
+                                android:text="10/100"
+                                android:textColor="@android:color/black"
+                                android:layout_marginEnd="10dp"
+                                android:textSize="14dp"
+                                />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ProgressBar
+                            android:id="@+id/pending"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="20"
+                            android:maxHeight="10dip"
+                            android:minHeight="50dp"
+                            android:max="100"
+                            android:scaleY="10"
+                            android:progress="50"
+
+                            style="@style/PendingOrder"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+                            <TextView
+                                android:id="@+id/pendingp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ppercentage"
+                                android:textAlignment="center"
+                                android:padding="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@android:color/white"
+                                android:layout_centerVertical="true"
+                                />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/pending">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Pending Orders"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:id="@+id/totalp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentEnd="true"
+                                android:text="10/100"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:layout_marginEnd="10dp"
+                                />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ProgressBar
+                            android:id="@+id/cancelled"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_weight="20"
+                            android:maxHeight="10dip"
+                            android:minHeight="50dp"
+                            android:max="100"
+                            android:scaleY="10"
+                            android:progress="50"
+                            style="@style/AllOrder"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp">
+                            <TextView
+                                android:id="@+id/cancelledp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ppercentage"
+                                android:textAlignment="center"
+                                android:padding="10dp"
+                                android:layout_marginLeft="20dp"
+                                android:textColor="@android:color/white"
+                                android:layout_centerVertical="true"
+                                />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/cancelled">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Cancelled Orders"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:textStyle="bold"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:id="@+id/totalc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentEnd="true"
+                                android:text="10/100"
+                                android:textColor="@android:color/black"
+                                android:textSize="14dp"
+                                android:layout_marginEnd="10dp"
+                                />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Ongoing Order:"
+                android:layout_margin="10dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:textStyle="bold"/>
             <androidx.cardview.widget.CardView
-                android:id="@+id/card_total_orders"
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                app:cardCornerRadius="10dp"
-                android:layout_weight="1"
-                app:cardElevation="5dp"
-                android:layout_margin="5dp"
-                app:cardBackgroundColor="@color/colorPrimary"
-                >
-                <RelativeLayout
-                    android:id="@+id/rel_total_orders"
+                android:id="@+id/card_current_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="5dp"
+                android:visibility="gone"
+                app:cardElevation="5dp">
+                <LinearLayout
+                    android:id="@+id/current_order"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_vertical"
-                    android:paddingTop="15dp"
-                    >
-                    <ImageView
-                        android:id="@+id/img5"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/sign"
-                        android:backgroundTint="@color/white"
-                        />
-                    <TextView
-                        android:layout_below="@+id/img5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/chivo"
-                        android:layout_centerHorizontal="true"
-                        android:text="Today's Orders"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="16dp"/>
+                    android:layout_height="wrap_content"
 
-                </RelativeLayout>
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/order_id"
+                            android:fontFamily="@font/chivo"
+                            android:layout_alignParentStart="true"
+                            android:text="order id "
+                            android:layout_marginLeft="5dp"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:textStyle="bold"
+                            android:padding="5dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/order_amount"
+                            android:fontFamily="@font/chivo"
+                            android:text="order total "
+                            android:layout_marginRight="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="18dp"
+                            android:padding="5dp"/>
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Pick Up from: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/vendor_name"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Vendor name "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/vendor_add"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="vendor add "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="16dp"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/vendor_mobile"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="vendor mobile "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="16dp"
+                                android:padding="5dp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="Deliver To: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/user_name"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="user name"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="18dp"
+                                android:textStyle="bold"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/user_add"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="user add "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="16dp"
+                                android:padding="5dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/user_mobile"
+                                android:fontFamily="@font/chivo"
+                                android:layout_alignParentStart="true"
+                                android:text="user mobile"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@android:color/black"
+                                android:textSize="16dp"
+                                android:padding="5dp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_upcoming"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/rel_upcoming"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="15dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img1"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+
+                            android:background="@drawable/shoppingbag"
+                            android:backgroundTint="@color/white"
+                            />
+                        <TextView
+                            android:layout_below="@+id/img1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_centerHorizontal="true"
+                            android:text="Upcoming Orders"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_delivered"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/rel_delivered"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="15dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img2"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/invoice"
+                            android:backgroundTint="@color/white"
+                            />
+                        <TextView
+                            android:layout_below="@+id/img2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_centerHorizontal="true"
+                            android:text="Delivered Orders"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_income"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/rel_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="15dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img4"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+
+                            android:background="@drawable/bill"
+                            android:backgroundTint="@color/white"
+                            />
+                        <TextView
+                            android:layout_below="@+id/img4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_centerHorizontal="true"
+                            android:text="Todays Income"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_total_orders"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/rel_total_orders"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="15dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img5"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/sign"
+                            android:backgroundTint="@color/white"
+                            />
+                        <TextView
+                            android:layout_below="@+id/img5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_centerHorizontal="true"
+                            android:text="Today's Orders"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
     </ScrollView>
 </RelativeLayout>

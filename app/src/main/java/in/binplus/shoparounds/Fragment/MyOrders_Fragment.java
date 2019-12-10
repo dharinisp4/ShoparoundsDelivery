@@ -82,7 +82,7 @@ public class MyOrders_Fragment extends Fragment {
         View view = inflater.inflate( R.layout.fragment_my_orders, container, false );
         sessionManagement = new Session_management(getActivity());
         get_id = sessionManagement.getUserDetails().get( KEY_ID);
-        rv_myorder = (RecyclerView) view.findViewById(R.id.rv_myorder);
+        rv_myorder = (RecyclerView) view.findViewById(R.id.rv_orders);
         rv_myorder.setLayoutManager(new LinearLayoutManager(getActivity()));
        // Toast.makeText( getActivity(),"id" +get_id,Toast.LENGTH_LONG ).show();
 
@@ -231,7 +231,7 @@ public class MyOrders_Fragment extends Fragment {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
                 if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.connection_time_out), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Connection Time out", Toast.LENGTH_SHORT).show();
                 }
             }
         });

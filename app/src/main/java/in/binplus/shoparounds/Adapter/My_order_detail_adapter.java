@@ -69,7 +69,7 @@ public class My_order_detail_adapter extends RecyclerView.Adapter<My_order_detai
         Glide.with(context)
                 .load( BaseURL.IMG_PRODUCT_URL + mList.getProduct_image())
                 .centerCrop()
-                .placeholder(R.drawable.newdownload)
+                .placeholder(R.drawable.iconn)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .dontAnimate()

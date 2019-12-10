@@ -15,6 +15,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -48,13 +49,14 @@ import java.util.UUID;
 import in.binplus.shoparounds.Config.BaseURL;
 
 public class GetSignature extends AppCompatActivity {
+    private static final String TAG = GetSignature.class.getName();
     Bitmap bitmap;
     Button clear, save, upload, choose;
     ImageView signImage;
     public String get_order_id = "";
     String path;
     private int PICK_IMAGE_REQUEST = 1;
-    private static final String IMAGE_DIRECTORY = "/GroceryDeliverySignature";
+    private static final String IMAGE_DIRECTORY = "/ShoparoundDeliverySignature";
     private static final int STORAGE_PERMISSION_CODE = 123;
     private Uri filePath;
     SignatureView signatureView;
@@ -93,6 +95,7 @@ public class GetSignature extends AppCompatActivity {
 
             }
         });
+        isStoragePermissionGranted();
         upload = (Button) findViewById(R.id.upload);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,6 +158,7 @@ public class GetSignature extends AppCompatActivity {
             return f.getAbsolutePath();
         } catch (IOException e1) {
             e1.printStackTrace();
+            Toast.makeText(GetSignature.this,""+e1.getMessage(),Toast.LENGTH_LONG).show();
         }
         return "";
 
@@ -346,4 +350,22 @@ public class GetSignature extends AppCompatActivity {
     }
 
 
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+
+                Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
 }

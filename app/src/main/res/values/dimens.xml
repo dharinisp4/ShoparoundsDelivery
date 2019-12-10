@@ -6,7 +6,6 @@
     <dimen name="nav_header_height">160dp</dimen>
 
 
-    <dimen name="text_size_XX_small">10sp</dimen>
     <dimen name="text_size_XXX_small">8sp</dimen>
     <dimen name="text_size_X_small">12sp</dimen>
     <dimen name="text_size_small">13sp</dimen>

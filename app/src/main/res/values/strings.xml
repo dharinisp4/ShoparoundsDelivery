@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ShopArounds</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -19,7 +19,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
-    <string name="currency" translatable="false">Rs.</string>
+    <string name="currency">Rs.</string>
 
     <string name="txtCredits" translatable="false"><a href="http://www.google.com">Google</a></string>
     <string name="tit" translatable="false">Title</string>
@@ -140,7 +140,7 @@
     <string name="delivery_date" translatable="false">"Delivery Date: </string>
     <string name="please_select_date" translatable="false">Please select date</string>
     <string name="no_rcord_found" translatable="false">No record found</string>
-    <string name="connection_time_out" translatable="false">Connection Time out</string>
+    <string name="connection_time_out">Connection Time out</string>
     <string name="add_delivery_address" translatable="false">Add Delivery Address</string>
     <string name="order_now" translatable="false">Order Now</string>
     <string name="payment_detail" translatable="false">Payment Details</string>
@@ -216,6 +216,7 @@
     <string name="pincode" translatable="false">Pincode:\u0020</string>
     <string name="house_no" translatable="false">House No.:\u0020</string>
     <string name="socity" translatable="false">Society:\u0020</string>
+
 
     <string name="link" translatable="false">Powered By <font color='green'>GoGrocer</font></string>
 

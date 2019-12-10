@@ -37,6 +37,7 @@ import com.android.volley.NetworkError;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 
+import in.binplus.shoparounds.Fragment.ContactAdminFragmnet;
 import in.binplus.shoparounds.Fragment.HomeFragment;
 import in.binplus.shoparounds.Fragment.MyOrders_Fragment;
 import in.binplus.shoparounds.Fragment.MyProfile_Fragment;
@@ -98,20 +99,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setPadding(padding, toolbar.getPaddingTop(), padding, toolbar.getPaddingBottom());
 
 
-//        setSupportActionBar(toolbar);
-        for (int i = 0; i < toolbar.getChildCount(); i++) {
+        setSupportActionBar(toolbar);
+//        for (int i = 0; i < toolbar.getChildCount(); i++) {
+//
+//            View view = toolbar.getChildAt(i);
 
-            View view = toolbar.getChildAt(i);
-
-            if (view instanceof TextView) {
-                TextView textView = (TextView) view;
-
-                Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "Font/Bold.ttf");
-                textView.setTypeface(myCustomFont);
-            }
+//            if (view instanceof TextView) {
+//                TextView textView = (TextView) view;
+//
+//                Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "Font/Bold.ttf");
+//                textView.setTypeface(myCustomFont);
+//            }
 
 
-        }
+//        }
 
 
 
@@ -164,17 +165,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         iv_profile = (ImageView) header.findViewById(R.id.iv_header_img);
-        iv_profile.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fm = new MyProfile_Fragment();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace( R.id.frame,fm )
-                        .addToBackStack(null).commit();
-
-
-            }
-        } );
+//        iv_profile.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Fragment fm = new MyProfile_Fragment();
+//                FragmentManager manager = getSupportFragmentManager();
+//                manager.beginTransaction().replace( R.id.frame,fm )
+//                        .addToBackStack(null).commit();
+//
+//
+//            }
+//        } );
 
 //        String getimage=sessionManagement.getUpdateProfile().get(BaseURL.KEY_IMAGE);
 //        if (!TextUtils.isEmpty(getimage)) {
@@ -367,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         {
             Fragment fm = new NotificationFragmnet();
            FragmentManager fragmentManager = getSupportFragmentManager() ;
-            fragmentManager.beginTransaction().replace(R.id.contentPanel, fm)
+            fragmentManager.beginTransaction().replace(R.id.frame, fm)
                     .addToBackStack(null).commit();
         }
 
@@ -386,29 +387,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        androidx.fragment.app.Fragment fm = null;
         Bundle args = new Bundle();
         if (id == R.id.nav_home) {
-            Toast.makeText(MainActivity.this,"home",Toast.LENGTH_LONG).show();
+           // Toast.makeText(MainActivity.this,"home",Toast.LENGTH_LONG).show();
             fm = new HomeFragment();
         } else if (id == R.id.nav_profile)
         {
             if (sessionManagement.isLoggedIn())
             {
 
-           Toast.makeText(MainActivity.this,"profile",Toast.LENGTH_LONG).show();
+          // Toast.makeText(MainActivity.this,"profile",Toast.LENGTH_LONG).show();
               fm=new MyProfile_Fragment();
             }
-//        else {
-//                Intent i = new Intent(MainActivity.this, LoginActivity.class);
-//                startActivity(i);
-//                overridePendingTransition(0, 0);
+
            }
 
         else if (id == R.id.nav_trans) {
-            Toast.makeText(MainActivity.this,"Transactions",Toast.LENGTH_LONG).show();
+           // Toast.makeText(MainActivity.this,"Transactions",Toast.LENGTH_LONG).show();
             fm = new MyTransaction_Fragment();
             args.putString( "type", "all" );
             fm.setArguments( args );
         }
         else if (id == R.id.nav_contact_admin) {
+
+            fm = new ContactAdminFragmnet();
+
 //            String smsNumber = "91958/4267640";
 //            Intent sendIntent = new Intent("android.intent.action.MAIN");
 //            sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
@@ -418,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if (id == R.id.nav_orders) {
             toolbar.setTitle("Orders");
-            Toast.makeText(MainActivity.this,"orders",Toast.LENGTH_LONG).show();
+          //  Toast.makeText(MainActivity.this,"orders",Toast.LENGTH_LONG).show();
             fm = new MyOrders_Fragment();
             args.putString( "type","all" );
             fm.setArguments(args);

@@ -1,6 +1,7 @@
 package in.binplus.shoparounds.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import in.binplus.shoparounds.LoginActivity;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.Session_management;
 
@@ -33,6 +35,8 @@ TextView user_id , user_name ,user_mobile, user_add ,user_vno,user_vname ,user_a
 ImageView edit_profile ;
 Session_management session ;
 
+ProgressDialog progressDialog ;
+
     public MyProfile_Fragment() {
         // Required empty public constructor
     }
@@ -51,6 +55,10 @@ Session_management session ;
       user_vname=view.findViewById( R.id.v_name );
       user_vno =view.findViewById( R.id.v_no );
       edit_profile=view.findViewById( R.id.img_edit );
+
+        progressDialog=new ProgressDialog( getActivity());
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Loading...");
 
       session = new Session_management( getActivity() );
 
@@ -76,6 +84,7 @@ Session_management session ;
        edit_profile.setOnClickListener( new View.OnClickListener() {
            @Override
            public void onClick(View view) {
+               progressDialog.show();
                EditProfileFragment fm = new EditProfileFragment();
                AppCompatActivity activity = (AppCompatActivity) view.getContext();
                Bundle args = new Bundle();
@@ -88,6 +97,7 @@ Session_management session ;
                args.putString( "vehicle_no",v_no );
                args.putString( "vehicle_name",vname );
                fm.setArguments( args );
+               progressDialog.dismiss();
                FragmentManager fragmentManager = activity.getSupportFragmentManager();
                fragmentManager.beginTransaction().replace( R.id.frame,fm )
                        .addToBackStack( null ).commit();

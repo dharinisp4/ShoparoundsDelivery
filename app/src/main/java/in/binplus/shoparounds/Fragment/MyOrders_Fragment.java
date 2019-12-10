@@ -1,6 +1,7 @@
 package in.binplus.shoparounds.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -45,6 +47,7 @@ import in.binplus.shoparounds.Adapter.My_Order_Adapter;
 import in.binplus.shoparounds.Adapter.OrdersAdapter;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
+import in.binplus.shoparounds.LoginActivity;
 import in.binplus.shoparounds.Models.OrderModel;
 import in.binplus.shoparounds.OrderDetail;
 import in.binplus.shoparounds.R;
@@ -69,6 +72,8 @@ public class MyOrders_Fragment extends Fragment {
     String type;
     String date ;
     My_Order_Adapter ordersAdapter ;
+    ProgressDialog progressDialog ;
+    ImageView img_no_order ;
 
     public MyOrders_Fragment() {
         // Required empty public constructor
@@ -84,48 +89,19 @@ public class MyOrders_Fragment extends Fragment {
         get_id = sessionManagement.getUserDetails().get( KEY_ID);
         rv_myorder = (RecyclerView) view.findViewById(R.id.rv_orders);
         rv_myorder.setLayoutManager(new LinearLayoutManager(getActivity()));
+        img_no_order = view.findViewById( R.id.img_no_order );
        // Toast.makeText( getActivity(),"id" +get_id,Toast.LENGTH_LONG ).show();
 
         type = getArguments().getString( "type" );
+
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+        progressDialog=new ProgressDialog( getActivity());
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Loading...");
 
         makeGetOrderRequest(get_id);
 
-//        rv_myorder.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),rv_myorder, new RecyclerTouchListener.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(View view, int position) {
-//
-//
-//                        String saleid = modelList.get(position).getSale_id();
-//                        String placedon = modelList.get(position).getOn_date();
-//                        String time = modelList.get(position).getDelivery_time_from() + "-" + modelList.get(position).getDelivery_time_to();
-//                        String item = modelList.get(position).getTotal_items();
-//                        String ammount = modelList.get(position).getTotal_amount();
-//                        String status = modelList.get(position).getStatus();
-//                        String society=modelList.get(position).getSocityname();
-//                        String house=modelList.get(position).getHouse();
-//                        String recivername=modelList.get(position).getRecivername();
-//                        String recivermobile=modelList.get(position).getRecivermobile();
-//                        Intent intent = new Intent(getActivity(), OrderDetail.class);
-//                        intent.putExtra("sale_id", saleid);
-//                        intent.putExtra("placedon", placedon);
-//                        intent.putExtra("time", time);
-//                        intent.putExtra("item", item);
-//                        intent.putExtra("ammount", ammount);
-//                        intent.putExtra("status", status);
-//                        intent.putExtra("socity_name",society);
-//                        intent.putExtra("house_no",house);
-//                        intent.putExtra("receiver_name",recivername);
-//                        intent.putExtra("receiver_mobile",recivermobile);
-//                        getActivity().startActivity(intent);
-//            }
-//
-//            @Override
-//            public void onLongItemClick(View view, int position) {
-//
-//            }
-//        }));
 
         return view;
     }
@@ -135,7 +111,7 @@ public class MyOrders_Fragment extends Fragment {
         String tag_json_obj = "json_socity_req";
         Map<String, String> params = new HashMap<String, String>();
         params.put("d_id", id);
-
+        progressDialog.show();
         CustomVolleyJsonArrayRequest jsonObjReq = new CustomVolleyJsonArrayRequest(Request.Method.POST,
                 BaseURL.URL_GET_ORDERS, params, new Response.Listener<JSONArray>() {
 
@@ -184,45 +160,87 @@ public class MyOrders_Fragment extends Fragment {
                         }
                         if (sts==true)
                         {
-
                             todays_list.add(my_order_model );
                         }
                         if(type.equalsIgnoreCase( "upcoming" ))
                         {
-                             ordersAdapter= new My_Order_Adapter( upcoming_list,getActivity());
-                            rv_myorder.setAdapter( ordersAdapter );
-                            ordersAdapter.notifyDataSetChanged();
+                            if (!(upcoming_list.isEmpty())) {
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+                                ordersAdapter = new My_Order_Adapter( upcoming_list, getActivity() );
+                                rv_myorder.setAdapter( ordersAdapter );
+                                ordersAdapter.notifyDataSetChanged();
+
+                            }
+                            else
+                            {
+                                rv_myorder.setVisibility( View.GONE );
+                                img_no_order.setVisibility( View.VISIBLE );
+                            }
+
                         }
                         else if (type.equalsIgnoreCase( "all" ))
                         {
-                            ordersAdapter = new My_Order_Adapter( my_order_modelList,getActivity());
-                            rv_myorder.setAdapter( ordersAdapter );
-                            ordersAdapter.notifyDataSetChanged();
+                            if (!(my_order_modelList.isEmpty())) {
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+                                ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
+                                rv_myorder.setAdapter( ordersAdapter );
+                                ordersAdapter.notifyDataSetChanged();
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+                            }
+                            else
+                            {
+                                img_no_order.setVisibility( View.VISIBLE );
+                                rv_myorder.setVisibility( View.GONE );
+                            }
+
                         }
                         else if( type.equalsIgnoreCase( "todays" ))
                         {
                             //Toast.makeText(getActivity(),""+today_list.size(),Toast.LENGTH_LONG).show();
-                            ordersAdapter = new My_Order_Adapter( todays_list,getActivity());
-                            rv_myorder.setAdapter( ordersAdapter );
-                            ordersAdapter.notifyDataSetChanged();
+                            if (!(todays_list.isEmpty())) {
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+                                ordersAdapter = new My_Order_Adapter( todays_list, getActivity() );
+                                rv_myorder.setAdapter( ordersAdapter );
+                                ordersAdapter.notifyDataSetChanged();
+                            }
+                            else
+                            {
+                                img_no_order.setVisibility( View.VISIBLE );
+                                rv_myorder.setVisibility( View.GONE );
+                            }
                         }
                         else if( type.equalsIgnoreCase( "delivered" ))
                         {
-                            ordersAdapter = new My_Order_Adapter( delivered_list,getActivity());
-                            rv_myorder.setAdapter( ordersAdapter );
-                            ordersAdapter.notifyDataSetChanged();
+                            if (!(delivered_list.isEmpty())) {
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+
+                                ordersAdapter = new My_Order_Adapter( delivered_list, getActivity() );
+                                rv_myorder.setAdapter( ordersAdapter );
+                                ordersAdapter.notifyDataSetChanged();
+                            }
+                            else
+                            {
+                                img_no_order.setVisibility( View.VISIBLE );
+                                rv_myorder.setVisibility( View.GONE );
+                            }
                         }
 
-
+                    progressDialog.dismiss();
 
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getActivity(),"err:- "+e.getMessage(),Toast.LENGTH_LONG).show();
                 }
-                  if (my_order_modelList.isEmpty()) {
-                    Toast.makeText(getActivity(), "No Record Found", Toast.LENGTH_SHORT).show();
-                }
+//                  if (my_order_modelList.isEmpty()) {
+//                    Toast.makeText(getActivity(), "No Record Found", Toast.LENGTH_SHORT).show();
+//
+//                }
             }
 
         }, new Response.ErrorListener() {

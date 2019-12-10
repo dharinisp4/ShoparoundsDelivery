@@ -125,22 +125,24 @@ SharedPreferences preferences;
             if (mList.getStatus().equals("0")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.pending));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.pending));
-                holder.rel_status.setBackgroundColor( Color.DKGRAY );
+                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.dark_gray));
             } else if (mList.getStatus().equals("1")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.confirm));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.confirm));
-                holder.rel_status.setBackgroundColor(Color.GREEN );
+                holder.tv_status.setTextColor( Color.BLACK );
+                holder.relativetextstatus.setTextColor( Color.BLACK );
+                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.yelow));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
             } else if (mList.getStatus().equals("2")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.outfordeliverd));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.outfordeliverd));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
-                holder.rel_status.setBackgroundColor( Color.BLUE );
+                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.text_color) );
             } else if (mList.getStatus().equals("4")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.delivered));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
-                holder.rel_status.setBackgroundColor( Color.RED );
+                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
             }
         } catch (Exception e) {
 

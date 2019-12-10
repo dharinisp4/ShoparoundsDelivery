@@ -59,11 +59,7 @@ ProgressDialog progressDialog ;
                 btn_continue.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String phone_number = et_phone.getText().toString();
-
-
-
                 if (phone_number.isEmpty())
                 {
                     et_phone.setError(" please enter phone number");
@@ -131,7 +127,7 @@ ProgressDialog progressDialog ;
                 try {
                     Boolean status = response.getBoolean("responce");
                     if (status) {
-//                      Toast.makeText(ForgotActivity.this, "" + error, Toast.LENGTH_SHORT).show();
+             //  Toast.makeText(MobileVerify.this, "" +response, Toast.LENGTH_SHORT).show();
                        Intent i = new Intent(MobileVerify.this, OtpVerification.class);
                        i.putExtra( "type","f" );
                         i.putExtra( "mobile",phone_number );
@@ -142,7 +138,7 @@ ProgressDialog progressDialog ;
                     } else {
                         String error = response.getString("error");
 
-                        Toast.makeText(MobileVerify.this, "" + error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MobileVerify.this, "er" + error, Toast.LENGTH_SHORT).show();
 
                     }
                 } catch (JSONException e) {
@@ -156,7 +152,7 @@ ProgressDialog progressDialog ;
                 progressDialog.dismiss();
                 Module module=new Module(MobileVerify.this);
                 String errormsg = module.VolleyErrorMessage(error);
-                Toast.makeText( MobileVerify.this,""+ errormsg, Toast.LENGTH_LONG ).show();
+                Toast.makeText( MobileVerify.this,"ev"+ errormsg, Toast.LENGTH_LONG ).show();
             }
         });
 

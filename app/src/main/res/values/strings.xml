@@ -167,7 +167,7 @@
     <string name="no_internet" translatable="false">Sorry! Not connected to internet</string>
     <string name="order_no" translatable="false">Order No.:\u0020</string>
     <string name="pending" translatable="false">Pending</string>
-    <string name="confirm" translatable="false">Confirm</string>
+    <string name="confirm" translatable="false">Confirmed</string>
     <string name="delivered" translatable="false">Delivered</string>
     <string name="outfordeliverd" translatable="false">Out for Delivery \n Ready to pickup</string>
     <string name="cancle" translatable="false">Cancle</string>

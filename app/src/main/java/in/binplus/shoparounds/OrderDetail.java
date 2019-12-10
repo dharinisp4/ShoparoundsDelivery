@@ -111,21 +111,23 @@ public class OrderDetail extends AppCompatActivity {
         if (stats.equals("0")) {
             tv_status.setText(getResources().getString(R.string.pending));
             relativetextstatus.setText(getResources().getString(R.string.pending));
-            rel_status.setBackgroundColor( Color.DKGRAY);
+            rel_status.setBackgroundColor( this.getResources().getColor(R.color.dark_gray));
 
         } else if (stats.equals("1")) {
             tv_status.setText(getResources().getString(R.string.confirm));
+            tv_status.setTextColor( Color.BLACK );
             relativetextstatus.setText(getResources().getString(R.string.confirm));
-            rel_status.setBackgroundColor( Color.GREEN );
+            relativetextstatus.setTextColor( Color.BLACK );
+            rel_status.setBackgroundColor(this.getResources().getColor(R.color.yelow));
         } else if (stats.equals("2")) {
             tv_status.setText(getResources().getString(R.string.outfordeliverd));
             relativetextstatus.setText(getResources().getString(R.string.outfordeliverd));
-            rel_status.setBackgroundColor( Color.BLUE );
+            rel_status.setBackgroundColor( this.getResources().getColor(R.color.text_color));
         } else if (stats.equals("4")) {
             tv_status.setText(getResources().getString(R.string.delivered));
             Mark_Delivered.setVisibility( View.GONE);
             relativetextstatus.setText(getResources().getString(R.string.delivered));
-            rel_status.setBackgroundColor( Color.RED );
+            rel_status.setBackgroundColor(this.getResources().getColor(R.color.add_cart_img));
         }
 
         tv_orderno.setText(sale_id);

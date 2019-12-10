@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText( LoginActivity.this,""+getname+"\n"+getpass,Toast.LENGTH_LONG ).show();
+                   // Toast.makeText( LoginActivity.this,""+getname+"\n"+getpass,Toast.LENGTH_LONG ).show();
                     getLogin( getname,getpass );
                 }
 
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             Boolean status = response.getBoolean( "responce" );
                             if (status == true) {
 
-                                Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
+                            //    Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
                                 JSONObject object = response.getJSONObject( "data" );
                                 String name =object.getString( "user_name" );
                                 String id = object.getString( "id" );
@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 startActivity( i );
                             } else {
-                                Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
+                              //  Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
                             }
                             progressDialog.dismiss();
                         } catch (JSONException e) {

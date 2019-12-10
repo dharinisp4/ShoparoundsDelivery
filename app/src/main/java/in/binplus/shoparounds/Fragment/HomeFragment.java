@@ -1,6 +1,7 @@
 package in.binplus.shoparounds.Fragment;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import in.binplus.shoparounds.Adapter.OrdersAdapter;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
+import in.binplus.shoparounds.LoginActivity;
 import in.binplus.shoparounds.Models.OrderModel;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
@@ -50,6 +52,7 @@ TextView del_percent ,can_percent ,pending_per ,del_tot , cancel_tot,pending_tot
     ArrayList<OrderModel> delivered_list;
     ArrayList<OrderModel> cancelled_list;
     ArrayList<OrderModel> today_list;
+    ProgressDialog progressDialog ;
 
 String id ;
     public HomeFragment() {
@@ -77,6 +80,10 @@ String id ;
     user_add=view.findViewById( R.id.user_add );
     user_mobile=view.findViewById( R.id.user_mobile );
     user_name=view.findViewById(R.id.vendor_name  );
+
+        progressDialog=new ProgressDialog( getActivity());
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Loading...");
 
     delivered_prog=view.findViewById( R.id.delivered );
     del_percent=view.findViewById( R.id.deliveredp );

@@ -116,7 +116,8 @@ android.app.ProgressDialog progressDialog ;
                         Toast.makeText(ResetPassword.this, "" + error, Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(ResetPassword.this,LoginActivity.class);
                         startActivity(intent);
-                        } else {
+                        }
+                    else {
                         String error = response.getString("error");
 
                         Toast.makeText(ResetPassword.this, "" + error, Toast.LENGTH_SHORT).show();

@@ -126,22 +126,36 @@ SharedPreferences preferences;
                 holder.tv_status.setText(activity.getResources().getString(R.string.pending));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.pending));
                 holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.dark_gray));
-            } else if (mList.getStatus().equals("1")) {
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.dark_gray));
+            }
+            else if (mList.getStatus().equals("1")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.confirm));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.confirm));
                 holder.tv_status.setTextColor( Color.BLACK );
                 holder.relativetextstatus.setTextColor( Color.BLACK );
                 holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.yelow));
-                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
-            } else if (mList.getStatus().equals("2")) {
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.yelow));
+            }
+
+            else if (mList.getStatus().equals("2")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.outfordeliverd));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.outfordeliverd));
-                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.text_color));
                 holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.text_color) );
-            } else if (mList.getStatus().equals("4")) {
+            }
+            else if (mList.getStatus().equals("3")) {
+                holder.tv_status.setText("Cancelled");
+                holder.relativetextstatus.setText("Cancelled");
+
+                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.color_3));
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.color_3));
+                holder.cardView.setClickable( false );
+                holder.cardView.setEnabled( false );
+            }
+            else if (mList.getStatus().equals("4")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.delivered));
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
-                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.green));
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.add_cart_img));
                 holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
             }
         } catch (Exception e) {
@@ -159,7 +173,7 @@ SharedPreferences preferences;
             holder.tv_time.setText(time);
 
 
-//        holder.tv_price.setText( mList.getTotal_amount()+context.getResources().getString(R.string.currency));
+       holder.tv_price.setText(activity.getResources().getString(R.string.currency)+ mList.getTotal_amount());
             holder.tv_item.setText(activity.getResources().getString(R.string.tv_cart_item) + mList.getTotal_items());
             holder.tv_socity.setText(mList.getSocityname());
             holder.tv_house.setText(mList.getHouse());
@@ -169,7 +183,7 @@ SharedPreferences preferences;
             holder.cardView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                   // Toast.makeText( context,"order detail",Toast.LENGTH_LONG ).show();
+
 
                     String saleid = mList.getSale_id();
                     String placedon =mList.getOn_date();
@@ -192,6 +206,7 @@ SharedPreferences preferences;
                     intent.putExtra("house_no",house);
                     intent.putExtra("receiver_name",recivername);
                     intent.putExtra("receiver_mobile",recivermobile);
+                  //  Toast.makeText( activity,"order detail" +ammount,Toast.LENGTH_LONG ).show();
                     activity.startActivity(intent);
                 }
             } );

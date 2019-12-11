@@ -1,11 +1,15 @@
 package in.binplus.shoparounds;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,10 +26,13 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 
+import com.android.volley.VolleyLog;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -39,13 +46,19 @@ import in.binplus.shoparounds.Models.My_order_detail_model;
 import in.binplus.shoparounds.Models.OrderModel;
 import in.binplus.shoparounds.util.ConnectivityReceiver;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
+import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
 
 public class OrderDetail extends AppCompatActivity {
     public TextView tv_orderno, tv_status, tv_date, tv_time, tv_price, tv_item, relativetextstatus, tv_tracking_date;
     private String sale_id;
-    RelativeLayout Mark_Delivered;
+    RelativeLayout Mark_Delivered ,Mark_cancelled;
     private RecyclerView rv_detail_order;
-    RelativeLayout rel_status ;
+    RelativeLayout rel_status ,rel_feedback;
+    EditText et_remarks ;
+    Button btn_submit ;
+    ProgressDialog progressDialog ;
+
+
     private List<My_order_detail_model> my_order_detail_modelList = new ArrayList<>();
 //    @Override
 //    protected void attachBaseContext(Context newBase) {
@@ -70,6 +83,9 @@ public class OrderDetail extends AppCompatActivity {
             }
         });
 
+        progressDialog=new ProgressDialog(this);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Loading...");
 
         rv_detail_order = (RecyclerView) findViewById(R.id.product_recycler);
         rv_detail_order.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -83,7 +99,37 @@ public class OrderDetail extends AppCompatActivity {
         tv_price = (TextView) findViewById(R.id.tv_order_price);
         tv_item = (TextView) findViewById(R.id.tv_order_item);
         rel_status =findViewById( R.id.rel_status );
+        btn_submit =findViewById( R.id.btn_submit );
 
+        Mark_cancelled = findViewById( R.id.btn_mark_cancelled );
+        rel_feedback =findViewById( R.id.rel_feedback );
+        et_remarks =findViewById( R.id.et_remarks );
+        Mark_cancelled.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rel_feedback.setVisibility( View.VISIBLE );
+                rel_feedback.requestFocus();
+                rv_detail_order.setVisibility( View.GONE );
+                Mark_Delivered.setVisibility( View.GONE );
+               Mark_cancelled.setVisibility( View.GONE );
+
+            }
+        } );
+        btn_submit.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String getRemark = et_remarks.getText().toString().trim();
+                if (getRemark.isEmpty())
+                {
+                    et_remarks.setError( "Enter a valid reason" );
+                    et_remarks.requestFocus();
+                }
+                else
+                    {
+                   makeCancelOrderRequest(sale_id,getRemark) ;
+                }
+            }
+        } );
 
         sale_id = getIntent().getStringExtra("sale_id");
         if (ConnectivityReceiver.isConnected()) {
@@ -126,6 +172,7 @@ public class OrderDetail extends AppCompatActivity {
         } else if (stats.equals("4")) {
             tv_status.setText(getResources().getString(R.string.delivered));
             Mark_Delivered.setVisibility( View.GONE);
+            Mark_cancelled.setVisibility( View.GONE );
             relativetextstatus.setText(getResources().getString(R.string.delivered));
             rel_status.setBackgroundColor(this.getResources().getColor(R.color.add_cart_img));
         }
@@ -178,6 +225,61 @@ public class OrderDetail extends AppCompatActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
 
+    }
+
+    private void makeCancelOrderRequest(String sale_id, String remark) {
+
+        // Tag used to cancel the request
+        String tag_json_obj = "json_delete_order_req";
+        progressDialog.show();
+
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("sale_id", sale_id);
+        params.put("remark",remark);
+
+        CustomVolleyJsonRequest jsonObjReq = new CustomVolleyJsonRequest(Request.Method.POST,
+                BaseURL.CancelOrder, params, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("cancel order", response.toString());
+
+                try {
+                    Boolean status = response.getBoolean("responce");
+                    if (status) {
+
+                        String msg = response.getString("message");
+                        Toast.makeText(OrderDetail.this, "" + msg, Toast.LENGTH_SHORT).show();
+
+                        Intent intent=new Intent(OrderDetail.this,MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                      OrderDetail.this.finish();
+
+
+                    } else {
+                        String error = response.getString("error");
+                        Toast.makeText(OrderDetail.this, "" + error, Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressDialog.dismiss();
+                VolleyLog.d("Cancel Order", "Error: " + error.getMessage());
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Toast.makeText(OrderDetail.this, getResources().getString(R.string.connection_time_out), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
     }
 
 

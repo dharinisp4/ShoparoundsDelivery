@@ -100,7 +100,14 @@ public class MyOrders_Fragment extends Fragment {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Loading...");
 
-        makeGetOrderRequest(get_id);
+        if( type.equals( "cancelled" ))
+        {
+          makeCancelledOrderRequest(get_id);
+        }
+        else
+        {
+            makeGetOrderRequest( get_id );
+        }
 
 
         return view;
@@ -191,8 +198,7 @@ public class MyOrders_Fragment extends Fragment {
                                 ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
                                 rv_myorder.setAdapter( ordersAdapter );
                                 ordersAdapter.notifyDataSetChanged();
-                                img_no_order.setVisibility( View.GONE );
-                                rv_myorder.setVisibility( View.VISIBLE );
+
                             }
                             else
                             {
@@ -288,4 +294,84 @@ public class MyOrders_Fragment extends Fragment {
 
         return st;
     }
+
+    private void makeCancelledOrderRequest( String id)
+    {
+        String tag_json_obj = "cancel_order_req";
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("d_id", id);
+        progressDialog.show();
+        CustomVolleyJsonArrayRequest jsonObjReq = new CustomVolleyJsonArrayRequest(Request.Method.POST,
+                BaseURL.URL_GET_CANCELLED_ORDERS, params, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+
+                try {
+
+                    for (int i = 0; i < response.length(); i++) {
+
+                        JSONObject obj = response.getJSONObject( i );
+                        String saleid = obj.getString( "sale_id" );
+                        String placedon = obj.getString( "on_date" );
+                        String timefrom = obj.getString( "delivery_time_from" );
+                        String timeto = obj.getString( "delivery_time_from" );
+                        String item = obj.getString( "total_items" );
+                        String ammount = obj.getString( "total_amount" );
+                        String status = obj.getString( "status" );
+
+                        String society = obj.getString( "socity_name" );
+                        String house = obj.getString( "house_no" );
+                        String rename = obj.getString( "receiver_name" );
+                        String renumber = obj.getString( "receiver_mobile" );
+                        OrderModel my_order_model = new OrderModel();
+                        my_order_model.setSocityname( society );
+                        my_order_model.setHouse( house );
+                        my_order_model.setRecivername( rename );
+                        my_order_model.setRecivermobile( renumber );
+                        my_order_model.setDelivery_time_from( timefrom );
+                        my_order_model.setSale_id( saleid );
+                        my_order_model.setOn_date( placedon );
+                        my_order_model.setDelivery_time_to( timeto );
+                        my_order_model.setTotal_amount( ammount );
+                        my_order_model.setStatus( status );
+                        my_order_model.setTotal_items( item );
+                        my_order_modelList.add( my_order_model );
+                        if (!(my_order_modelList.isEmpty())) {
+                            img_no_order.setVisibility( View.GONE );
+                            rv_myorder.setVisibility( View.VISIBLE );
+                            ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
+                            rv_myorder.setAdapter( ordersAdapter );
+                            ordersAdapter.notifyDataSetChanged();
+
+                        } else {
+                            img_no_order.setVisibility( View.VISIBLE );
+                            rv_myorder.setVisibility( View.GONE );
+                        }
+                    }
+                    progressDialog.dismiss();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText( getActivity(), "err:- " + e.getMessage(), Toast.LENGTH_LONG ).show();
+                }
+//                  if (my_order_modelList.isEmpty()) {
+//                    Toast.makeText(getActivity(), "No Record Found", Toast.LENGTH_SHORT).show();
+//
+//                }
+
+            }
+        }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            VolleyLog.d(TAG, "Error: " + error.getMessage());
+
+            if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                Toast.makeText(getActivity(),"Connection Time out", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+}
 }

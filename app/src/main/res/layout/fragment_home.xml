@@ -516,8 +516,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_centerHorizontal="true"
-
-                            android:background="@drawable/bill"
+                            android:background="@drawable/declined"
                             android:backgroundTint="@color/white"
                             />
                         <TextView
@@ -526,7 +525,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/chivo"
                             android:layout_centerHorizontal="true"
-                            android:text="Todays Income"
+                            android:text="Cancelled Order"
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:textSize="16dp"/>

@@ -135,7 +135,6 @@ String id ;
         {
             fm= new OrderDeatailsFragment();
 
-
         }
         else if (id == R.id.card_upcoming)
         {
@@ -145,9 +144,9 @@ String id ;
         }
         else if (id == R.id.card_income)
         {
-            fm = new MyTransaction_Fragment();
-            args.putString( "type", "todays" );
-            fm.setArguments( args );
+            fm = new MyOrders_Fragment();
+            args.putString( "type","cancelled" );
+            fm.setArguments(args);
         }
         else if (id == R.id.card_delivered)
         {

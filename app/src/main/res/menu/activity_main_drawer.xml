@@ -20,11 +20,13 @@
         <item
             android:id="@+id/nav_trans"
 
-            android:title="Payments" />
+            android:title="Payments"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_contact_admin"
 
-            android:title="Contact Admin" />
+            android:title="Contact Admin"
+            android:visible="false"/>
 
         <item
             android:id="@+id/nav_logout"

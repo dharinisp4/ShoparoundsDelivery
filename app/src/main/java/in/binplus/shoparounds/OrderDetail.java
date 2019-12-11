@@ -169,7 +169,16 @@ public class OrderDetail extends AppCompatActivity {
             tv_status.setText(getResources().getString(R.string.outfordeliverd));
             relativetextstatus.setText(getResources().getString(R.string.outfordeliverd));
             rel_status.setBackgroundColor( this.getResources().getColor(R.color.text_color));
-        } else if (stats.equals("4")) {
+        }
+        else if (stats.equals("3")) {
+           tv_status.setText("Cancelled");
+           relativetextstatus.setText("Cancelled");
+
+            rel_status.setBackgroundColor(OrderDetail.this.getResources().getColor(R.color.color_3));
+            tv_status.setTextColor(OrderDetail.this.getResources().getColor(R.color.color_3));
+
+        }
+        else if (stats.equals("4")) {
             tv_status.setText(getResources().getString(R.string.delivered));
             Mark_Delivered.setVisibility( View.GONE);
             Mark_cancelled.setVisibility( View.GONE );

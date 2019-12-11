@@ -4,15 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
     tools:context=".Fragment.HomeFragment">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/gradientbackground">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:src="@drawable/delivery_boy"
+
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,7 +167,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
                         <ProgressBar
                             android:id="@+id/cancelled"
                             android:layout_width="match_parent"
@@ -165,7 +183,8 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="40dp">
+                            android:layout_height="40dp"
+                            android:visibility="gone">
                             <TextView
                                 android:id="@+id/cancelledp"
                                 android:layout_width="wrap_content"
@@ -398,6 +417,7 @@
                     android:layout_weight="1"
                     app:cardElevation="5dp"
                     android:layout_margin="5dp"
+
                     app:cardBackgroundColor="@color/colorPrimary"
                     >
                     <RelativeLayout

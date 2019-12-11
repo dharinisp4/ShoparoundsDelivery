@@ -158,6 +158,10 @@ public class MyOrders_Fragment extends Fragment {
                         {
                             delivered_list.add( my_order_model );
                         }
+                        else if (statuss == 3)
+                        {
+                            my_order_modelList.remove( my_order_model );
+                        }
                         if (sts==true)
                         {
                             todays_list.add(my_order_model );

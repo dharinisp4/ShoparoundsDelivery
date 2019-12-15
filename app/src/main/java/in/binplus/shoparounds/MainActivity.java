@@ -1,10 +1,12 @@
 package in.binplus.shoparounds;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -81,6 +83,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         newBase = LocaleHelper.onAttach(newBase);
 
         super.attachBaseContext(newBase);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Fragment  f = getSupportFragmentManager().findFragmentById(R.id.frame);
+
+        if (f instanceof HomeFragment) {
+//            finish();
+//            System.exit(0);
+            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("ShopArounds Delivery");
+            builder.setIcon( R.drawable.delivery_boy );
+            builder.setMessage("Are you sure want to exit?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    finish();
+                    //  getActivity().finishAffinity();
+
+
+                }
+            })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+            AlertDialog dialog=builder.create();
+            dialog.show();
+
+        } else {
+            super.onBackPressed();
+        }
+
     }
 
     @Override

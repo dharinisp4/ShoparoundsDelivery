@@ -28,6 +28,7 @@ import java.util.HashMap;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.LoginActivity;
+import in.binplus.shoparounds.MainActivity;
 import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.ResetPassword;
@@ -56,6 +57,9 @@ ProgressDialog progressDialog ;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate( R.layout.fragment_edit_profile, container, false );
+
+        ((MainActivity) getActivity()).setTitle("Edit Profile");
+
         et_name = view.findViewById( R.id.et_name );
         et_add =view.findViewById( R.id.et_address );
         et_adhar=view.findViewById( R.id.et_adharno );

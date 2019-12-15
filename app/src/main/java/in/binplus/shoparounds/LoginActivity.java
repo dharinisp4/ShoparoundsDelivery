@@ -2,8 +2,10 @@ package in.binplus.shoparounds;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +32,33 @@ public class LoginActivity extends AppCompatActivity {
     TextView txt_register , txt_forgot ;
     EditText user_name , user_pass ;
     ProgressDialog progressDialog ;
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle("ShopArounds Delivery");
+        builder.setIcon( R.drawable.delivery_boy );
+
+        builder.setMessage("Are you sure want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                finish();
+                //  getActivity().finishAffinity();
+
+
+            }
+        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+        AlertDialog dialog=builder.create();
+        dialog.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,12 +140,16 @@ public class LoginActivity extends AppCompatActivity {
                                 String v_name=object.getString( "vehicle_name" );
                                 String add =object.getString( "address" );
                                 String pin = object.getString("pincode");
+                               // String msg = response.getString( "message" );
+                                Toast.makeText( LoginActivity.this,"Logged in Successfully" ,Toast.LENGTH_LONG).show();
                                 Session_management session = new Session_management( LoginActivity.this );
                                 session.createLoginSession(id,user_id,adhar,name,mobile,"",v_name,v_no,pin,add,"","",""  );
                                 Intent i = new Intent( LoginActivity.this, MainActivity.class );
 
                                 startActivity( i );
                             } else {
+                              //  String msg = response.getString( "message" );
+                                Toast.makeText( LoginActivity.this,"Wrong Username or Password" ,Toast.LENGTH_LONG).show();
                               //  Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
                             }
                             progressDialog.dismiss();

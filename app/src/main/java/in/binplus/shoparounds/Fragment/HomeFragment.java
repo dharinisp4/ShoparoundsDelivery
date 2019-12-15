@@ -1,7 +1,9 @@
 package in.binplus.shoparounds.Fragment;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -10,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ import in.binplus.shoparounds.Adapter.OrdersAdapter;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.LoginActivity;
+import in.binplus.shoparounds.MainActivity;
 import in.binplus.shoparounds.Models.OrderModel;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
@@ -65,6 +69,7 @@ String id ;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
     View view= inflater.inflate( R.layout.fragment_home, container, false );
+        ((MainActivity) getActivity()).setTitle("Dashboard");
 
     session = new Session_management( getActivity() );
     card_delivered =view.findViewById( R.id.card_delivered );
@@ -88,6 +93,37 @@ String id ;
     delivered_prog=view.findViewById( R.id.delivered );
     del_percent=view.findViewById( R.id.deliveredp );
     del_tot =view.findViewById( R.id.totald );
+
+//        view.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+//                    builder.setTitle("Close Application");
+//                    builder.setMessage("Are you sure want to exit?");
+//                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            dialogInterface.dismiss();
+//                            //((MainActivity) getActivity()).finish();
+//                            getActivity().finishAffinity();
+//
+//
+//                        }
+//                    })
+//                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialogInterface, int i) {
+//                                    dialogInterface.dismiss();
+//                                }
+//                            });
+//                    AlertDialog dialog=builder.create();
+//                    dialog.show();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
 
         alllist = new ArrayList<>(  );
          pending_list = new ArrayList<>(  );
@@ -125,6 +161,7 @@ String id ;
 
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -171,6 +208,7 @@ String id ;
     }
     private void getOrders( String id  )
     {
+        progressDialog.show();
         HashMap<String ,String> params = new HashMap<>(  );
         params.put( "d_id",id );
 
@@ -250,7 +288,7 @@ String id ;
     delivered_prog.setProgress( getPercentage( delivered_list.size(),alllist.size() ) );
     pending_prog.setProgress( getPercentage( pending_list.size(),alllist.size() ) );
 
-
+progressDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

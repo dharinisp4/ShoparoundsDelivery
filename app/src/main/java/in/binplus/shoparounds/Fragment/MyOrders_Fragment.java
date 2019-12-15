@@ -48,6 +48,7 @@ import in.binplus.shoparounds.Adapter.OrdersAdapter;
 import in.binplus.shoparounds.AppController;
 import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.LoginActivity;
+import in.binplus.shoparounds.MainActivity;
 import in.binplus.shoparounds.Models.OrderModel;
 import in.binplus.shoparounds.OrderDetail;
 import in.binplus.shoparounds.R;
@@ -103,9 +104,26 @@ public class MyOrders_Fragment extends Fragment {
         if( type.equals( "cancelled" ))
         {
           makeCancelledOrderRequest(get_id);
+            ((MainActivity) getActivity()).setTitle("Cancelled Orders");
+        }
+        else if (type.equals( "upcoming" ))
+        {
+            ((MainActivity) getActivity()).setTitle("Upcoming Orders");
+            makeGetOrderRequest( get_id );
+        }
+        else if (type.equals( "delivered" ))
+        {
+            ((MainActivity) getActivity()).setTitle("Delivered Orders");
+            makeGetOrderRequest( get_id );
+        }
+        else if (type.equals( "todays" ))
+        {
+            ((MainActivity) getActivity()).setTitle("Todays Orders");
+            makeGetOrderRequest( get_id );
         }
         else
         {
+            ((MainActivity) getActivity()).setTitle("My Orders");
             makeGetOrderRequest( get_id );
         }
 
@@ -124,6 +142,7 @@ public class MyOrders_Fragment extends Fragment {
 
             @Override
             public void onResponse(JSONArray response) {
+                Log.d( "Orders",response.toString() );
 
                 try {
 

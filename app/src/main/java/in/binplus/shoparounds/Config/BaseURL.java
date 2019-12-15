@@ -74,7 +74,7 @@ public class BaseURL {
     public static String OrderDetail = BASE_URL + "index.php/api/order_details";
     public static  String UpdatePassword = BASE_URL+"index.php/api/update_password_delivery";
     public static  String CancelOrder =BASE_URL+"index.php/api/mark_cancel_order";
-
+    public static String PUT_SUGGESTION_URL = BASE_URL + "index.php/api/delivery_boy_queries";
 
     public static final String urlUpload = BASE_URL+"index.php/api/mark_delivered2";
 

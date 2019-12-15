@@ -26,7 +26,7 @@
             android:id="@+id/nav_contact_admin"
 
             android:title="Contact Admin"
-            android:visible="false"/>
+           />
 
         <item
             android:id="@+id/nav_logout"

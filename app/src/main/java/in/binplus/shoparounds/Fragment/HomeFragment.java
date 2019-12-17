@@ -254,7 +254,7 @@ String id ;
 //                                model.setRecivers_name( object.getString( "receiver_name" ) );
 //                                model.setReciver_mobile( object.getString( "receiver_mobile" ) );
 
-                                alllist.add( model );
+                               String note=object.getString("note");
 
                                 int status = Integer.parseInt( object.getString( "status" ) );
                                 if (status == 2)
@@ -266,9 +266,14 @@ String id ;
                                     delivered_list.add( model );
                                 }
 
-                                else if (status == 3)
+                                else if (status == 3 && !(note.equals("")))
                                 {
                                     cancelled_list.add( model );
+                                }
+                                if(!(status ==3 && note.equals("")))
+                                {
+                                    alllist.add( model );
+
                                 }
 
 

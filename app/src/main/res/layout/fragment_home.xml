@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@drawable/gradientbackground">
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:src="@drawable/delivery_boy"
@@ -62,7 +62,7 @@
                                 android:id="@+id/deliveredp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ppercentage"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:padding="10dp"
                                 android:layout_marginLeft="20dp"
@@ -125,7 +125,7 @@
                                 android:id="@+id/pendingp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ppercentage"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:padding="10dp"
                                 android:layout_marginLeft="20dp"
@@ -168,7 +168,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone">
+                        >
                         <ProgressBar
                             android:id="@+id/cancelled"
                             android:layout_width="match_parent"
@@ -184,12 +184,12 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:visibility="gone">
+                           >
                             <TextView
                                 android:id="@+id/cancelledp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="ppercentage"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:padding="10dp"
                                 android:layout_marginLeft="20dp"

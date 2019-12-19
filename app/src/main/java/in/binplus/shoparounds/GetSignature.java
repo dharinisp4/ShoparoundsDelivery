@@ -20,11 +20,14 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -64,6 +67,8 @@ public class GetSignature extends AppCompatActivity {
     LinearLayout linearLayout;
     ImageView choose_capture;
     String chooseimage="false";
+    EditText et_remark ;
+    String getremark ="";
 //    @Override
 //    protected void attachBaseContext(Context newBase) {
 //        newBase = LocaleChanger.configureBaseContext(newBase);
@@ -78,6 +83,7 @@ public class GetSignature extends AppCompatActivity {
         linearLayout = (LinearLayout) findViewById(R.id.linear_layout);
         choose_capture = (ImageView) findViewById(R.id.choose_capture);
         signatureView = (SignatureView) findViewById(R.id.signature_view);
+        et_remark = findViewById( R.id.et_remarks );
 
         clear = (Button) findViewById(R.id.clear);
         clear.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +108,8 @@ public class GetSignature extends AppCompatActivity {
             public void onClick(View v) {
                 if (saveimage.contains("true")){
                     if (chooseimage.contains("true")){
-                        uploadMultipart();
+                        getremark = et_remark.getText().toString();
+                        uploadMultipart(getremark);
                     }
                     else {
                         Toast.makeText(GetSignature.this, "Please Choose Signature Image ", Toast.LENGTH_SHORT).show();
@@ -165,14 +172,15 @@ public class GetSignature extends AppCompatActivity {
     }
 
     //Upload To Server
-    public void uploadMultipart() {
+    public void uploadMultipart( String remark ) {
+
         String path = getPath(filePath);
         try {
             String uploadId = UUID.randomUUID().toString();
             new MultipartUploadRequest(this, BaseURL.urlUpload)
                     .addFileToUpload(path, "signature") //Adding file
-                    .addParameter("id", get_order_id) //Adding text parameter to the request
-
+                    .addParameter("id", get_order_id)
+                    .addParameter( "comment",remark )//Adding text parameter to the request
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
             Intent intent = new Intent(GetSignature.this, MainActivity.class);

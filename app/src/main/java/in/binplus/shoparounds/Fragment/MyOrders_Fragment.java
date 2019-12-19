@@ -104,7 +104,7 @@ public class MyOrders_Fragment extends Fragment {
         if( type.equals( "cancelled" ))
         {
           makeCancelledOrderRequest(get_id);
-            ((MainActivity) getActivity()).setTitle("Cancelled Orders");
+            ((MainActivity) getActivity()).setTitle("Undelivered Orders");
         }
         else if (type.equals( "upcoming" ))
         {
@@ -143,126 +143,127 @@ public class MyOrders_Fragment extends Fragment {
             @Override
             public void onResponse(JSONArray response) {
                 Log.d( "Orders",response.toString() );
+                progressDialog.dismiss();
 
                 try {
 
-                    for (int i = 0; i < response.length(); i++) {
+                    if (response.length() <= 0) {
 
-                        JSONObject obj = response.getJSONObject(i);
-                        String saleid = obj.getString("sale_id");
-                        String placedon = obj.getString("on_date");
-                        String timefrom = obj.getString("delivery_time_from");
-                        String timeto=obj.getString("delivery_time_from");
-                        String item = obj.getString("total_items");
-                        String ammount = obj.getString("total_amount");
-                        String status = obj.getString("status");
+                        img_no_order.setVisibility( View.VISIBLE );
+                        rv_myorder.setVisibility( View.GONE );
+                    } else {
+                        img_no_order.setVisibility( View.GONE );
+                        rv_myorder.setVisibility( View.VISIBLE );
 
-                        String society = obj.getString("socity_name");
-                        String house = obj.getString("house_no");
-                        String rename = obj.getString("receiver_name");
-                        String renumber = obj.getString("receiver_mobile");
-                        OrderModel my_order_model = new OrderModel();
-                        my_order_model.setSocityname(society);
-                        my_order_model.setHouse(house);
-                        my_order_model.setRecivername(rename);
-                        my_order_model.setRecivermobile(renumber);
-                        my_order_model.setDelivery_time_from(timefrom);
-                        my_order_model.setSale_id(saleid);
-                        my_order_model.setOn_date(placedon);
-                        my_order_model.setDelivery_time_to(timeto);
-                        my_order_model.setTotal_amount(ammount);
-                        my_order_model.setStatus(status);
-                        my_order_model.setTotal_items(item);
-                        my_order_modelList.add(my_order_model);
-                        boolean sts=compareDate(obj.getString( "on_date" ));
-                        int statuss = Integer.parseInt( status );
-                        if (statuss == 2)
-                        {
-                            upcoming_list.add( my_order_model );
-                        }
-                        else if (statuss == 4 )
-                        {
-                            delivered_list.add( my_order_model );
-                        }
-                        else if (statuss == 3)
-                        {
-                            my_order_modelList.remove( my_order_model );
-                        }
-                        if (sts==true)
-                        {
-                            todays_list.add(my_order_model );
-                        }
-                        if(type.equalsIgnoreCase( "upcoming" ))
-                        {
-                            if (!(upcoming_list.isEmpty())) {
-                                img_no_order.setVisibility( View.GONE );
-                                rv_myorder.setVisibility( View.VISIBLE );
-                                ordersAdapter = new My_Order_Adapter( upcoming_list, getActivity() );
-                                rv_myorder.setAdapter( ordersAdapter );
-                                ordersAdapter.notifyDataSetChanged();
+
+                            for (int i = 0; i < response.length(); i++) {
+
+                                JSONObject obj = response.getJSONObject( i );
+                                String saleid = obj.getString( "sale_id" );
+                                String placedon = obj.getString( "on_date" );
+                                String timefrom = obj.getString( "delivery_time_from" );
+                                String timeto = obj.getString( "delivery_time_from" );
+                                String item = obj.getString( "total_items" );
+                                String ammount = obj.getString( "total_amount" );
+                                String status = obj.getString( "status" );
+                                String society = obj.getString( "socity_name" );
+                                String house = obj.getString( "house_no" );
+                                String rename = obj.getString( "receiver_name" );
+                                String renumber = obj.getString( "receiver_mobile" );
+                                String c_date = obj.getString( "confirm_date" );
+                                String d_date=obj.getString( "delivered_date" );
+                                String p_date=obj.getString( "placed_date" );
+                                String o_date=obj.getString( "out_date" );
+                                String note = obj.getString( "note" );
+                                OrderModel my_order_model = new OrderModel();
+                                my_order_model.setSocityname( society );
+                                my_order_model.setHouse( house );
+                                my_order_model.setRecivername( rename );
+                                my_order_model.setRecivermobile( renumber );
+                                my_order_model.setDelivery_time_from( timefrom );
+                                my_order_model.setSale_id( saleid );
+                                my_order_model.setOn_date( placedon );
+                                my_order_model.setDelivery_time_to( timeto );
+                                my_order_model.setTotal_amount( ammount );
+                                my_order_model.setStatus( status );
+                                my_order_model.setTotal_items( item );
+                                my_order_model.setConfirm_date( c_date );
+                                my_order_model.setDelivered_date( d_date );
+                                my_order_model.setPlaced_date( p_date );
+                                my_order_model.setOut_date( o_date );
+                                my_order_model.setNote( note );
+                                my_order_modelList.add( my_order_model );
+                                boolean sts = compareDate( obj.getString( "delivered_date" ) );
+                                int statuss = Integer.parseInt( status );
+                                if (statuss == 2) {
+                                    upcoming_list.add( my_order_model );
+                                } else if (statuss == 4) {
+                                    delivered_list.add( my_order_model );
+                                } else if (statuss == 3) {
+                                    my_order_modelList.remove( my_order_model );
+                                }
+                                if (sts == true) {
+                                    todays_list.add( my_order_model );
+                                }
+                                if (type.equalsIgnoreCase( "upcoming" )) {
+                                    if (!(upcoming_list.isEmpty())) {
+                                        img_no_order.setVisibility( View.GONE );
+                                        rv_myorder.setVisibility( View.VISIBLE );
+                                        ordersAdapter = new My_Order_Adapter( upcoming_list, getActivity() );
+                                        rv_myorder.setAdapter( ordersAdapter );
+                                        ordersAdapter.notifyDataSetChanged();
+
+                                    } else {
+                                        rv_myorder.setVisibility( View.GONE );
+                                        img_no_order.setVisibility( View.VISIBLE );
+                                    }
+
+                                } else if (type.equalsIgnoreCase( "all" )) {
+                                    if (!(my_order_modelList.isEmpty())) {
+                                        img_no_order.setVisibility( View.GONE );
+                                        rv_myorder.setVisibility( View.VISIBLE );
+                                        ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
+                                        rv_myorder.setAdapter( ordersAdapter );
+                                        ordersAdapter.notifyDataSetChanged();
+
+                                    } else {
+                                        img_no_order.setVisibility( View.VISIBLE );
+                                        rv_myorder.setVisibility( View.GONE );
+                                    }
+
+                                } else if (type.equalsIgnoreCase( "todays" )) {
+                                    //Toast.makeText(getActivity(),""+today_list.size(),Toast.LENGTH_LONG).show();
+                                    if (!(todays_list.isEmpty())) {
+                                        img_no_order.setVisibility( View.GONE );
+                                        rv_myorder.setVisibility( View.VISIBLE );
+                                        ordersAdapter = new My_Order_Adapter( todays_list, getActivity() );
+                                        rv_myorder.setAdapter( ordersAdapter );
+                                        ordersAdapter.notifyDataSetChanged();
+                                    } else {
+                                        img_no_order.setVisibility( View.VISIBLE );
+                                        rv_myorder.setVisibility( View.GONE );
+                                    }
+                                } else if (type.equalsIgnoreCase( "delivered" )) {
+                                    if (!(delivered_list.isEmpty())) {
+                                        img_no_order.setVisibility( View.GONE );
+                                        rv_myorder.setVisibility( View.VISIBLE );
+
+                                        ordersAdapter = new My_Order_Adapter( delivered_list, getActivity() );
+                                        rv_myorder.setAdapter( ordersAdapter );
+                                        ordersAdapter.notifyDataSetChanged();
+                                    } else {
+                                        img_no_order.setVisibility( View.VISIBLE );
+                                        rv_myorder.setVisibility( View.GONE );
+                                    }
+                                }
+
+                              //  progressDialog.dismiss();
 
                             }
-                            else
-                            {
-                                rv_myorder.setVisibility( View.GONE );
-                                img_no_order.setVisibility( View.VISIBLE );
-                            }
-
-                        }
-                        else if (type.equalsIgnoreCase( "all" ))
-                        {
-                            if (!(my_order_modelList.isEmpty())) {
-                                img_no_order.setVisibility( View.GONE );
-                                rv_myorder.setVisibility( View.VISIBLE );
-                                ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
-                                rv_myorder.setAdapter( ordersAdapter );
-                                ordersAdapter.notifyDataSetChanged();
-
-                            }
-                            else
-                            {
-                                img_no_order.setVisibility( View.VISIBLE );
-                                rv_myorder.setVisibility( View.GONE );
-                            }
-
-                        }
-                        else if( type.equalsIgnoreCase( "todays" ))
-                        {
-                            //Toast.makeText(getActivity(),""+today_list.size(),Toast.LENGTH_LONG).show();
-                            if (!(todays_list.isEmpty())) {
-                                img_no_order.setVisibility( View.GONE );
-                                rv_myorder.setVisibility( View.VISIBLE );
-                                ordersAdapter = new My_Order_Adapter( todays_list, getActivity() );
-                                rv_myorder.setAdapter( ordersAdapter );
-                                ordersAdapter.notifyDataSetChanged();
-                            }
-                            else
-                            {
-                                img_no_order.setVisibility( View.VISIBLE );
-                                rv_myorder.setVisibility( View.GONE );
-                            }
-                        }
-                        else if( type.equalsIgnoreCase( "delivered" ))
-                        {
-                            if (!(delivered_list.isEmpty())) {
-                                img_no_order.setVisibility( View.GONE );
-                                rv_myorder.setVisibility( View.VISIBLE );
-
-                                ordersAdapter = new My_Order_Adapter( delivered_list, getActivity() );
-                                rv_myorder.setAdapter( ordersAdapter );
-                                ordersAdapter.notifyDataSetChanged();
-                            }
-                            else
-                            {
-                                img_no_order.setVisibility( View.VISIBLE );
-                                rv_myorder.setVisibility( View.GONE );
-                            }
                         }
 
-                    progressDialog.dismiss();
-
-                    }
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(getActivity(),"err:- "+e.getMessage(),Toast.LENGTH_LONG).show();
                 }
@@ -327,51 +328,73 @@ public class MyOrders_Fragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 try {
+                    progressDialog.dismiss();
 
-                    for (int i = 0; i < response.length(); i++) {
+                    if(response.length()<=0)
+                    {
 
-                        JSONObject obj = response.getJSONObject( i );
-                        String saleid = obj.getString( "sale_id" );
-                        String placedon = obj.getString( "on_date" );
-                        String timefrom = obj.getString( "delivery_time_from" );
-                        String timeto = obj.getString( "delivery_time_from" );
-                        String item = obj.getString( "total_items" );
-                        String ammount = obj.getString( "total_amount" );
-                        String status = obj.getString( "status" );
+                        img_no_order.setVisibility( View.VISIBLE );
+                        rv_myorder.setVisibility( View.GONE );
+                    }
+                    else {
+                        img_no_order.setVisibility( View.GONE );
+                        rv_myorder.setVisibility( View.VISIBLE );
+                        for (int i = 0; i < response.length(); i++) {
 
-                        String society = obj.getString( "socity_name" );
-                        String house = obj.getString( "house_no" );
-                        String rename = obj.getString( "receiver_name" );
-                        String renumber = obj.getString( "receiver_mobile" );
-                        OrderModel my_order_model = new OrderModel();
-                        my_order_model.setSocityname( society );
-                        my_order_model.setHouse( house );
-                        my_order_model.setRecivername( rename );
-                        my_order_model.setRecivermobile( renumber );
-                        my_order_model.setDelivery_time_from( timefrom );
-                        my_order_model.setSale_id( saleid );
-                        my_order_model.setOn_date( placedon );
-                        my_order_model.setDelivery_time_to( timeto );
-                        my_order_model.setTotal_amount( ammount );
-                        my_order_model.setStatus( status );
-                        my_order_model.setTotal_items( item );
-                        my_order_modelList.add( my_order_model );
-                        if (!(my_order_modelList.isEmpty())) {
-                            img_no_order.setVisibility( View.GONE );
-                            rv_myorder.setVisibility( View.VISIBLE );
-                            ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
-                            rv_myorder.setAdapter( ordersAdapter );
-                            ordersAdapter.notifyDataSetChanged();
+                            JSONObject obj = response.getJSONObject( i );
+                            String saleid = obj.getString( "sale_id" );
+                            String placedon = obj.getString( "on_date" );
+                            String timefrom = obj.getString( "delivery_time_from" );
+                            String timeto = obj.getString( "delivery_time_from" );
+                            String item = obj.getString( "total_items" );
+                            String ammount = obj.getString( "total_amount" );
+                            String status = obj.getString( "status" );
+                            String society = obj.getString( "socity_name" );
+                            String house = obj.getString( "house_no" );
+                            String rename = obj.getString( "receiver_name" );
+                            String renumber = obj.getString( "receiver_mobile" );
+                            String c_date = obj.getString( "confirm_date" );
+                            String d_date=obj.getString( "delivered_date" );
+                            String p_date=obj.getString( "placed_date" );
+                            String o_date=obj.getString( "out_date" );
+                            String note = obj.getString( "note" );
+                            OrderModel my_order_model = new OrderModel();
+                            my_order_model.setSocityname( society );
+                            my_order_model.setHouse( house );
+                            my_order_model.setRecivername( rename );
+                            my_order_model.setRecivermobile( renumber );
+                            my_order_model.setDelivery_time_from( timefrom );
+                            my_order_model.setSale_id( saleid );
+                            my_order_model.setOn_date( placedon );
+                            my_order_model.setDelivery_time_to( timeto );
+                            my_order_model.setTotal_amount( ammount );
+                            my_order_model.setStatus( status );
+                            my_order_model.setTotal_items( item );
+                            my_order_model.setConfirm_date( c_date );
+                            my_order_model.setDelivered_date( d_date );
+                            my_order_model.setPlaced_date( p_date );
+                            my_order_model.setOut_date( o_date );
+                            my_order_model.setNote( note );
+                            my_order_modelList.add( my_order_model );
+                            if (!(my_order_modelList.isEmpty())) {
+                                progressDialog.dismiss();
+                                img_no_order.setVisibility( View.GONE );
+                                rv_myorder.setVisibility( View.VISIBLE );
+                                ordersAdapter = new My_Order_Adapter( my_order_modelList, getActivity() );
+                                rv_myorder.setAdapter( ordersAdapter );
+                                ordersAdapter.notifyDataSetChanged();
 
-                        } else {
-                            img_no_order.setVisibility( View.VISIBLE );
-                            rv_myorder.setVisibility( View.GONE );
+                            } else {
+                                progressDialog.dismiss();
+                                img_no_order.setVisibility( View.VISIBLE );
+                                rv_myorder.setVisibility( View.GONE );
+                            }
                         }
                     }
-                    progressDialog.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    progressDialog.dismiss();
                     Toast.makeText( getActivity(), "err:- " + e.getMessage(), Toast.LENGTH_LONG ).show();
                 }
 //                  if (my_order_modelList.isEmpty()) {
@@ -383,6 +406,7 @@ public class MyOrders_Fragment extends Fragment {
         }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
+            progressDialog.dismiss();
             VolleyLog.d(TAG, "Error: " + error.getMessage());
 
             if (error instanceof TimeoutError || error instanceof NoConnectionError) {

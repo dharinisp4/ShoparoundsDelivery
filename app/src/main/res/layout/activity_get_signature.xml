@@ -11,7 +11,7 @@
         android:id="@+id/signature_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         sign:backgroundColor="#ffffff"
         sign:enableSignature="true"
         sign:penColor="#000000"
@@ -42,6 +42,38 @@
         </RelativeLayout>
 
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Remark :"
+        android:textColor="#000"
+        android:fontFamily="@font/chivo"
+        android:textSize="14sp" />
+    <EditText
+        android:id="@+id/et_remarks"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/xml_textbox_bg"
+        android:ems="10"
+        android:fontFamily="@font/chivo"
+        android:gravity="top"
+        android:padding="10dp"
+        android:hint="Enter remark if any"
+        android:textColor="#000"
+        android:textColorHint="@color/dark_gray"
+        android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout

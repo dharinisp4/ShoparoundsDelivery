@@ -49,7 +49,7 @@ import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
 import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
 
 public class OrderDetail extends AppCompatActivity {
-    public TextView tv_orderno, tv_status, tv_date, tv_time, tv_price, tv_item, relativetextstatus, tv_tracking_date;
+    public TextView tv_orderno, tv_status, tv_date, tv_time, tv_price, tv_item, relativetextstatus, tv_tracking_date,txt_date_type;
     private String sale_id;
     RelativeLayout Mark_Delivered ,Mark_cancelled;
     private RecyclerView rv_detail_order;
@@ -100,6 +100,7 @@ public class OrderDetail extends AppCompatActivity {
         tv_item = (TextView) findViewById(R.id.tv_order_item);
         rel_status =findViewById( R.id.rel_status );
         btn_submit =findViewById( R.id.btn_submit );
+        txt_date_type=findViewById( R.id.txt_date_type );
 
         Mark_cancelled = findViewById( R.id.btn_mark_cancelled );
         rel_feedback =findViewById( R.id.rel_feedback );
@@ -159,31 +160,42 @@ public class OrderDetail extends AppCompatActivity {
             relativetextstatus.setText(getResources().getString(R.string.pending));
             rel_status.setBackgroundColor( this.getResources().getColor(R.color.dark_gray));
 
+
         } else if (stats.equals("1")) {
             tv_status.setText(getResources().getString(R.string.confirm));
             tv_status.setTextColor( Color.BLACK );
             relativetextstatus.setText(getResources().getString(R.string.confirm));
             relativetextstatus.setTextColor( Color.BLACK );
+            txt_date_type.setText( "Confirmed On :" );
             rel_status.setBackgroundColor(this.getResources().getColor(R.color.yelow));
         } else if (stats.equals("2")) {
             tv_status.setText(getResources().getString(R.string.outfordeliverd));
             relativetextstatus.setText(getResources().getString(R.string.outfordeliverd));
+
             rel_status.setBackgroundColor( this.getResources().getColor(R.color.text_color));
         }
         else if (stats.equals("3")) {
            tv_status.setText("Cancelled");
            relativetextstatus.setText("Cancelled");
-
+            txt_date_type.setText( "Cancelled On :" );
             rel_status.setBackgroundColor(OrderDetail.this.getResources().getColor(R.color.color_3));
             tv_status.setTextColor(OrderDetail.this.getResources().getColor(R.color.color_3));
 
         }
         else if (stats.equals("4")) {
             tv_status.setText(getResources().getString(R.string.delivered));
+            txt_date_type.setText( "Delivered On :" );
             Mark_Delivered.setVisibility( View.GONE);
             Mark_cancelled.setVisibility( View.GONE );
             relativetextstatus.setText(getResources().getString(R.string.delivered));
             rel_status.setBackgroundColor(this.getResources().getColor(R.color.add_cart_img));
+        }
+        else if (equals("5")) {
+            tv_status.setText("Undelivered");
+            //   holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
+         tv_status.setTextColor(OrderDetail.this.getResources().getColor(R.color.color_1));
+            //    holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
+
         }
 
         tv_orderno.setText(sale_id);
@@ -263,7 +275,7 @@ public class OrderDetail extends AppCompatActivity {
                         Intent intent=new Intent(OrderDetail.this,MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                      OrderDetail.this.finish();
+                     finish();
 
 
                     } else {

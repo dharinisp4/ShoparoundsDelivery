@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +46,8 @@ SharedPreferences preferences;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_orderno, tv_status, tv_date, tv_time, tv_price, tv_item, relativetextstatus, tv_tracking_date,tv_socity,
-                tv_recivername,tv_recivernumber,tv_house;
-        LinearLayout cardView;
+                tv_recivername,tv_recivernumber,tv_house ,txt_note ,txt_date_type;
+        LinearLayout cardView ,linear_note ,linear_date;
          RelativeLayout rel_status;
         public MyViewHolder(View view) {
             super(view);
@@ -62,6 +63,11 @@ SharedPreferences preferences;
             tv_house=view.findViewById(R.id.tv_house);
             tv_recivername=view.findViewById(R.id.tv_recivername);
             tv_recivernumber=view.findViewById(R.id.tv_recivernmobile);
+            linear_note = view.findViewById( R.id.linear_note );
+            txt_note = view.findViewById( R.id.txt_Note );
+            txt_date_type = view.findViewById( R.id.txt_date_type );
+            linear_date = view.findViewById( R.id.linear_date );
+
 
             cardView = view.findViewById(R.id.card_view);
             rel_status = (RelativeLayout) view.findViewById(R.id.rel_status);
@@ -117,9 +123,6 @@ SharedPreferences preferences;
 
 
         try {
-
-
-
             holder.tv_orderno.setText(mList.getSale_id());
 
             if (mList.getStatus().equals("0")) {
@@ -127,43 +130,87 @@ SharedPreferences preferences;
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.pending));
                 holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.dark_gray));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.dark_gray));
+                holder.txt_date_type.setText( "Placed on :" );
+                holder.tv_tracking_date.setText(mList.getPlaced_date());
             }
             else if (mList.getStatus().equals("1")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.confirm));
-                holder.relativetextstatus.setText(activity.getResources().getString(R.string.confirm));
-                holder.tv_status.setTextColor( Color.BLACK );
-                holder.relativetextstatus.setTextColor( Color.BLACK );
-                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.yelow));
-                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.yelow));
+                holder.tv_status.setTextColor(activity.getResources().getColor( R.color.orange )  );
+                holder.txt_date_type.setText( "Order Confirmed on :" );
+                holder.tv_tracking_date.setText(mList.getConfirm_date());
+//                holder.relativetextstatus.setText(activity.getResources().getString(R.string.confirm));
+//                holder.tv_status.setTextColor( Color.BLACK );
+//                holder.relativetextstatus.setTextColor( Color.BLACK );
+//                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.yelow));
+//                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.yelow));
             }
 
             else if (mList.getStatus().equals("2")) {
-                holder.tv_status.setText(activity.getResources().getString(R.string.outfordeliverd));
-                holder.relativetextstatus.setText(activity.getResources().getString(R.string.outfordeliverd));
+                holder.tv_status.setText("Out for Delivery");
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.text_color));
-                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.text_color) );
+                holder.txt_date_type.setText( "Out for delivery on :" );
+                holder.tv_tracking_date.setText(mList.getOut_date());
+//                holder.relativetextstatus.setText(activity.getResources().getString(R.string.outfordeliverd));
+//
+//                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.text_color) );
             }
             else if (mList.getStatus().equals("3")) {
                 holder.tv_status.setText("Cancelled");
-                holder.relativetextstatus.setText("Cancelled");
-
-                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.color_3));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.color_3));
+              //  holder.txt_date_type.setText( "Order Cancelled on :" );
+                holder.linear_date.setVisibility( View.GONE );
+
+             //   holder.tv_tracking_date.setText(mList.getOn_date());
+//                holder.relativetextstatus.setText("Cancelled");
+//
+//                holder.rel_status.setBackgroundColor(activity.getResources().getColor(R.color.color_3));
+
                 holder.cardView.setClickable( false );
                 holder.cardView.setEnabled( false );
             }
             else if (mList.getStatus().equals("4")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.delivered));
-                holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
+        //        holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.add_cart_img));
-                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
+                holder.txt_date_type.setText( "Order Delivered on :" );
+                holder.tv_tracking_date.setText(mList.getDelivered_date());
+          //      holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
+                if (!(mList.getNote().equals( "" )))
+                {
+                    holder.linear_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+                }
+                else
+                {
+                    holder.linear_note.setVisibility(View.GONE);
+                }
             }
+            else if (mList.getStatus().equals("5")) {
+                holder.tv_status.setText("Undelivered");
+             //   holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
+                holder.tv_status.setTextColor(activity.getResources().getColor(R.color.color_1));
+                holder.txt_date_type.setText( "Out for delivery on :" );
+                holder.tv_tracking_date.setText(mList.getOut_date());
+            //    holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
+                if (!(mList.getNote() ==""))
+                {
+                    holder.linear_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+
+                }
+                else
+                {
+                    holder.linear_note.setVisibility( View.GONE );
+                }
+
+            }
+
         } catch (Exception e) {
 
         }
 
             holder.tv_date.setText(mList.getOn_date());
-            holder.tv_tracking_date.setText(mList.getOn_date());
+
      //   preferences = activity.getSharedPreferences("lan", MODE_PRIVATE);
 
             String timefrom=mList.getDelivery_time_from();

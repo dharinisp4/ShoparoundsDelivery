@@ -29,14 +29,45 @@
 
             </RelativeLayout>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/space_15"
+    android:layout_marginRight="@dimen/space_15"
+    android:layout_marginTop="@dimen/space_10"
+    android:weightSum="2"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        android:textSize="@dimen/space_20"
+        android:padding="@dimen/space_5"
+        android:fontFamily="@font/chivo"
+        android:layout_weight="1"
 
+        android:textColor="@android:color/black"/>
+
+    <Switch
+        android:id="@+id/active_switch"
+        android:layout_width="10dp"
+
+        android:layout_weight="1"
+        android:textOff="Unavailable"
+        android:textOn="Available"
+        android:textSize="@dimen/space_20"
+        android:textColor="@color/colorPrimary"
+        android:layout_height="match_parent"
+        />
+
+</LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 >
                 <LinearLayout
-                    android:layout_marginTop="20dp"
+
                     android:layout_marginBottom="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -208,7 +239,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/chivo"
                                 android:layout_alignParentStart="true"
-                                android:text="Cancelled Orders"
+                                android:text="Undelivered Orders"
                                 android:textColor="@android:color/black"
                                 android:textSize="14dp"
                                 android:textStyle="bold"
@@ -410,6 +441,44 @@
                 android:weightSum="2"
                 >
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_total_orders"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    app:cardElevation="5dp"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/rel_total_orders"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:paddingTop="15dp"
+                        >
+                        <ImageView
+                            android:id="@+id/img5"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/sign"
+                            android:backgroundTint="@color/white"
+                            />
+                        <TextView
+                            android:layout_below="@+id/img5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/chivo"
+                            android:layout_centerHorizontal="true"
+                            android:text="Today's Orders"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="16dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/card_upcoming"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
@@ -449,6 +518,14 @@
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                >
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_delivered"
                     android:layout_width="0dp"
@@ -487,13 +564,6 @@
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                >
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_income"
                     android:layout_width="0dp"
@@ -525,51 +595,14 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/chivo"
                             android:layout_centerHorizontal="true"
-                            android:text="Cancelled Order"
+                            android:text="Undelivered Orders"
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:textSize="16dp"/>
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_total_orders"
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    app:cardCornerRadius="10dp"
-                    android:layout_weight="1"
-                    app:cardElevation="5dp"
-                    android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/colorPrimary"
-                    >
-                    <RelativeLayout
-                        android:id="@+id/rel_total_orders"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
-                        android:paddingTop="15dp"
-                        >
-                        <ImageView
-                            android:id="@+id/img5"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_centerHorizontal="true"
-                            android:background="@drawable/sign"
-                            android:backgroundTint="@color/white"
-                            />
-                        <TextView
-                            android:layout_below="@+id/img5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/chivo"
-                            android:layout_centerHorizontal="true"
-                            android:text="Today's Orders"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:textSize="16dp"/>
 
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

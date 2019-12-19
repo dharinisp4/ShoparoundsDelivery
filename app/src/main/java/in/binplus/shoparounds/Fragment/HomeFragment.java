@@ -16,8 +16,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +59,9 @@ TextView del_percent ,can_percent ,pending_per ,del_tot , cancel_tot,pending_tot
     ArrayList<OrderModel> cancelled_list;
     ArrayList<OrderModel> today_list;
     ProgressDialog progressDialog ;
+    Switch active_switch ;
+    TextView active_status ;
+    int active_state ;
 
 String id ;
     public HomeFragment() {
@@ -85,6 +90,8 @@ String id ;
     user_add=view.findViewById( R.id.user_add );
     user_mobile=view.findViewById( R.id.user_mobile );
     user_name=view.findViewById(R.id.vendor_name  );
+
+    active_switch = view.findViewById( R.id.active_switch );
 
         progressDialog=new ProgressDialog( getActivity());
         progressDialog.setCanceledOnTouchOutside(false);
@@ -124,6 +131,27 @@ String id ;
 //                return false;
 //            }
 //        });
+
+        active_switch.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b == true) {
+
+                    active_switch.setText( "Available" );
+                    active_state = 0;
+                    Toast.makeText( getContext(), "on", Toast.LENGTH_LONG ).show();
+                }
+                else
+                {
+
+                    active_switch.setText( "Unavailable" );
+                    active_state =1 ;
+                    Toast.makeText( getContext(), "off", Toast.LENGTH_LONG ).show();
+                }
+
+
+            }
+        } );
 
         alllist = new ArrayList<>(  );
          pending_list = new ArrayList<>(  );
@@ -312,7 +340,14 @@ progressDialog.dismiss();
     }
     int getPercentage(int initial ,int finals)
     {
-        int p = (initial*100)/finals;
+        int p=0;
+        if (finals !=0) {
+            p = (initial * 100) / finals;
+        }
+        else
+        {
+            p=0;
+        }
         return p ;
     }
 }

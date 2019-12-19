@@ -23,6 +23,42 @@ public class OrderModel {
     String house;
     String recivername;
     String recivermobile;
+    String confirm_date;
+    String delivered_date;
+    String placed_date;
+    String out_date;
+
+    public String getConfirm_date() {
+        return confirm_date;
+    }
+
+    public void setConfirm_date(String confirm_date) {
+        this.confirm_date = confirm_date;
+    }
+
+    public String getDelivered_date() {
+        return delivered_date;
+    }
+
+    public void setDelivered_date(String delivered_date) {
+        this.delivered_date = delivered_date;
+    }
+
+    public String getPlaced_date() {
+        return placed_date;
+    }
+
+    public void setPlaced_date(String placed_date) {
+        this.placed_date = placed_date;
+    }
+
+    public String getOut_date() {
+        return out_date;
+    }
+
+    public void setOut_date(String out_date) {
+        this.out_date = out_date;
+    }
 
     public String getSale_id() {
         return sale_id;

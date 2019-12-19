@@ -58,7 +58,8 @@
                     android:gravity="end"
                     android:paddingBottom="@dimen/space_8"
                     android:textColor="@color/green"
-                    android:textSize="@dimen/text_size_normal" />
+                    android:textSize="@dimen/space_18"
+                    android:textStyle="bold"/>
             </LinearLayout>
 
             <LinearLayout
@@ -116,7 +117,7 @@
                     android:fontFamily="@font/chivo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".5"
+                    android:layout_weight=".8"
                     android:text="@string/socity"
 
                     android:textColor="@color/dark_gray"
@@ -138,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_7"
                     android:layout_weight=".3"
-                    android:text="@string/hus_n"
+                    android:text="Address "
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/text_size_small" />
 
@@ -164,7 +165,7 @@
                     android:fontFamily="@font/chivo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".5"
+                    android:layout_weight="1"
                     android:text="@string/rec_nm"
                     android:textColor="@color/dark_gray"
                     android:textSize="@dimen/text_size_small" />
@@ -174,7 +175,7 @@
                     android:id="@+id/tv_recivername"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight=".8"
+                    android:layout_weight="1"
                     android:text=""
                     android:textColor="#000"
                     android:textSize="@dimen/text_size_small" />
@@ -184,7 +185,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/space_9"
-                    android:layout_weight=".6"
+                    android:layout_weight="1"
                     android:gravity="right"
                     android:text="@string/tt_t"
                     android:textColor="@color/dark_gray"
@@ -268,9 +269,11 @@
             android:layout_marginLeft="@dimen/space_10"
             android:layout_marginRight="@dimen/space_10"
             android:layout_marginTop="@dimen/space_14"
+            android:id="@+id/linear_date"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/txt_date_type"
                 android:fontFamily="@font/chivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -289,7 +292,51 @@
                 android:textSize="@dimen/text_size_small" />
 
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_8"
+            android:background="@color/gray" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/gray"
+            android:layout_margin="@dimen/space_5"
+            app:cardCornerRadius="@dimen/space_5"
+            android:padding="@dimen/space_5">
+        <LinearLayout
+            android:id="@+id/linear_note"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_margin="@dimen/space_5"
+            android:gravity="center_vertical"
 
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:fontFamily="@font/chivo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note :"
+                android:padding="@dimen/space_5"
+                android:layout_marginLeft="@dimen/space_5"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_small" />
+
+            <TextView
+                android:fontFamily="@font/chivo"
+                android:id="@+id/txt_Note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:text="note"
+                android:textColor="@color/color_3"
+               android:padding="@dimen/space_5"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <RelativeLayout
             android:id="@+id/rel_status"
             android:layout_width="210dp"
@@ -297,6 +344,7 @@
             android:layout_marginLeft="@dimen/space_10"
             android:layout_marginRight="@dimen/space_10"
             android:layout_marginTop="@dimen/space_14"
+            android:visibility="gone"
             android:background="@drawable/bg_rounded_button"
             android:padding="12dp">
 
@@ -316,7 +364,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="@dimen/space_18"
+
             android:background="@color/gray" />
 
 

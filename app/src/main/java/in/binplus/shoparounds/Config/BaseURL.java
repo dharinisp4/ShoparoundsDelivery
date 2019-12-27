@@ -88,6 +88,8 @@ public class BaseURL {
     //Filter Urls
 
     public static String GET_LANGUAGE_URL = BASE_URL + "index.php/api/get_language";
+    public static String SET_CURRENT_STATUS = BASE_URL + "index.php/api/set_current_status";
+    public static String GET_CURRENT_STATUS = BASE_URL + "index.php/api/get_current_status";
     public static String GET_SUBJECT_URL = BASE_URL + "index.php/api/get_subject";
     public static String GET_BOOK_CLASS_URL = BASE_URL + "index.php/api/get_book_class";
     public static String GET_BOOK_CLASS_LIST = BASE_URL + "index.php/api/getBookClass";

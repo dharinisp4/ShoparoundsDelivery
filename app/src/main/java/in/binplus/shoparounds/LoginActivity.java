@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import in.binplus.shoparounds.Config.BaseURL;
+import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
 import in.binplus.shoparounds.util.Session_management;
 
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnlogin;
     TextView txt_register , txt_forgot ;
     EditText user_name , user_pass ;
+    Module module;
     ProgressDialog progressDialog ;
 
     @Override
@@ -64,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_login );
+        module=new Module(LoginActivity.this);
         btnlogin = findViewById( R.id.btnContinue );
         txt_register = findViewById( R.id.btnRegister );
         user_name = findViewById( R.id.et_login_email );
@@ -155,6 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            progressDialog.dismiss();
                             Toast.makeText( LoginActivity.this, "" + e.getMessage(), Toast.LENGTH_LONG ).show();
                         }
 
@@ -163,7 +167,12 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        progressDialog.dismiss();
+                        String msg=module.VolleyErrorMessage(error);
+                        if(!(msg.isEmpty() || msg.equals("")))
+                        {
+                            Toast.makeText(LoginActivity.this,""+msg.toString(),Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } );
             AppController.getInstance().addToRequestQueue( jsonRequest );

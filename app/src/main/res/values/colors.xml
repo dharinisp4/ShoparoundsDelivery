@@ -32,4 +32,6 @@
     <color name="darkOverlaySoft">#40000000</color>
     <color name="green">#00CED1</color>
     <color name="bgcolor2">#eff0f4</color>
+    <color name="red_switch">#f44336</color>
+    <color name="green_switch">#4caf50</color>
 </resources>

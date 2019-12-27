@@ -50,6 +50,7 @@ import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.LoginActivity;
 import in.binplus.shoparounds.MainActivity;
 import in.binplus.shoparounds.Models.OrderModel;
+import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.OrderDetail;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
@@ -67,7 +68,7 @@ public class MyOrders_Fragment extends Fragment {
     private List<OrderModel> upcoming_list= new ArrayList<>();
     private List<OrderModel> delivered_list = new ArrayList<>();
     private List<OrderModel> todays_list = new ArrayList<>();
-
+    Module module;
     private Session_management sessionManagement;
     String get_id;
     String type;
@@ -86,6 +87,7 @@ public class MyOrders_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate( R.layout.fragment_my_orders, container, false );
+        module=new Module(getActivity());
         sessionManagement = new Session_management(getActivity());
         get_id = sessionManagement.getUserDetails().get( KEY_ID);
         rv_myorder = (RecyclerView) view.findViewById(R.id.rv_orders);
@@ -265,7 +267,7 @@ public class MyOrders_Fragment extends Fragment {
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(),"err:- "+e.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity()," "+e.getMessage(),Toast.LENGTH_LONG).show();
                 }
 //                  if (my_order_modelList.isEmpty()) {
 //                    Toast.makeText(getActivity(), "No Record Found", Toast.LENGTH_SHORT).show();
@@ -278,8 +280,10 @@ public class MyOrders_Fragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
 
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Toast.makeText(getActivity(),"Connection Time out", Toast.LENGTH_SHORT).show();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -308,7 +312,8 @@ public class MyOrders_Fragment extends Fragment {
         }
         catch (Exception ex)
         {
-            Toast.makeText(getActivity(),""+ex.getMessage(),Toast.LENGTH_LONG).show();
+            ex.printStackTrace();
+           // Toast.makeText(getActivity(),"err2"+ex.getMessage(),Toast.LENGTH_LONG).show();
 
         }
 
@@ -395,7 +400,7 @@ public class MyOrders_Fragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     progressDialog.dismiss();
-                    Toast.makeText( getActivity(), "err:- " + e.getMessage(), Toast.LENGTH_LONG ).show();
+                    Toast.makeText( getActivity(), " " + e.getMessage(), Toast.LENGTH_LONG ).show();
                 }
 //                  if (my_order_modelList.isEmpty()) {
 //                    Toast.makeText(getActivity(), "No Record Found", Toast.LENGTH_SHORT).show();
@@ -411,6 +416,10 @@ public class MyOrders_Fragment extends Fragment {
 
             if (error instanceof TimeoutError || error instanceof NoConnectionError) {
                 Toast.makeText(getActivity(),"Connection Time out", Toast.LENGTH_SHORT).show();
+            } String msg=module.VolleyErrorMessage(error);
+            if(!(msg.isEmpty() || msg.equals("")))
+            {
+                Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
             }
         }
     });

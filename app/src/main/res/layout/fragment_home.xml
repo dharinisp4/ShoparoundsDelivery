@@ -35,27 +35,32 @@
     android:layout_marginLeft="@dimen/space_15"
     android:layout_marginRight="@dimen/space_15"
     android:layout_marginTop="@dimen/space_10"
-    android:weightSum="2"
+    android:weightSum="10"
     android:orientation="horizontal">
     <TextView
+        android:background="@drawable/xml_budget"
+        android:backgroundTint="@color/red_switch"
         android:layout_width="0dp"
+        android:id="@+id/txt_status"
         android:layout_height="wrap_content"
-        android:text="Status:"
-        android:textSize="@dimen/space_20"
-        android:padding="@dimen/space_5"
+        android:text="Free"
+        android:textSize="@dimen/space_18"
+        android:paddingLeft="@dimen/space_5"
+        android:paddingRight="@dimen/space_5"
         android:fontFamily="@font/chivo"
-        android:layout_weight="1"
-
-        android:textColor="@android:color/black"/>
+        android:layout_weight="7"
+       android:textAlignment="center"
+        android:textColor="@color/white"/>
 
     <Switch
         android:id="@+id/active_switch"
         android:layout_width="10dp"
 
-        android:layout_weight="1"
-        android:textOff="Unavailable"
-        android:textOn="Available"
+        android:layout_weight="3"
+
         android:textSize="@dimen/space_20"
+        android:thumb="@drawable/round_thumb"
+        android:track="@drawable/round_track"
         android:textColor="@color/colorPrimary"
         android:layout_height="match_parent"
         />

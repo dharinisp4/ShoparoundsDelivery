@@ -41,7 +41,7 @@ public class EditProfileFragment extends Fragment {
    EditText et_name ,et_add ,et_pin ,et_adhar,et_mobile ,et_vno ,et_vname ,et_uname ;
    EditText oldpass ,newpass ;
    Button UpdatePassword;
-
+   Module module;
    String name , address , pincode , vehiclename ,vehicleno ,adharid  ,id , mobile;
 Button update;
 ProgressDialog progressDialog ;
@@ -59,7 +59,7 @@ ProgressDialog progressDialog ;
         View view= inflater.inflate( R.layout.fragment_edit_profile, container, false );
 
         ((MainActivity) getActivity()).setTitle("Edit Profile");
-
+       module=new Module(getActivity());
         et_name = view.findViewById( R.id.et_name );
         et_add =view.findViewById( R.id.et_address );
         et_adhar=view.findViewById( R.id.et_adharno );
@@ -166,8 +166,11 @@ ProgressDialog progressDialog ;
             @Override
             public void onErrorResponse(VolleyError error) {
                 progressDialog.dismiss();
-                String errormsg = Module.VolleyErrorMessage(error);
-                Toast.makeText( getActivity(),""+ errormsg, Toast.LENGTH_LONG ).show();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

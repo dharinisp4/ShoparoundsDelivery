@@ -45,7 +45,7 @@ import in.binplus.shoparounds.util.Session_management;
  * A simple {@link Fragment} subclass.
  */
 public class ContactAdminFragmnet extends Fragment {
-
+   Module module;
     String language;
     SharedPreferences preferences;
     EditText et_name , et_phone , et_message ;
@@ -67,7 +67,7 @@ ProgressDialog progressDialog ;
         progressDialog=new ProgressDialog( getActivity());
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Loading...");
-
+        module=new Module(getActivity());
         ((MainActivity) getActivity()).setTitle("Contact Admin");
 
         sessionManagement = new Session_management(getActivity());
@@ -177,8 +177,11 @@ ProgressDialog progressDialog ;
             @Override
             public void onErrorResponse(VolleyError error) {
                progressDialog.dismiss();
-                String errormsg = Module.VolleyErrorMessage(error);
-                Toast.makeText( getActivity(),""+ errormsg,Toast.LENGTH_LONG ).show();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -225,7 +228,11 @@ ProgressDialog progressDialog ;
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText( getActivity() ,"error"+ error.getMessage(),Toast.LENGTH_LONG ).show();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
             }
         } ){
             @Override

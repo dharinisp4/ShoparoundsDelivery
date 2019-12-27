@@ -24,6 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import in.binplus.shoparounds.Config.BaseURL;
+import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
 import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
 
@@ -32,7 +33,7 @@ public class RegisterActivity extends Activity {
     EditText et_name,et_mobile,et_add,et_adhar,et_pass,et_cpass,et_vehicle,et_vehicle_no ,et_pin ;
     Button btn_register ;
     ProgressDialog progressDialog ;
-
+   Module module;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -40,7 +41,7 @@ public class RegisterActivity extends Activity {
         progressDialog=new ProgressDialog(this);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Loading...");
-
+       module=new Module(RegisterActivity.this);
         et_name=findViewById( R.id.et_name );
         et_mobile=findViewById( R.id.et_phone );
         et_add=findViewById( R.id.et_address );
@@ -216,7 +217,11 @@ private void registerUser ( String mobile, String name,String password,
             }, new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
-            Toast.makeText( RegisterActivity.this,""+error.getMessage() ,Toast.LENGTH_LONG).show();
+            String msg=module.VolleyErrorMessage(error);
+            if(!(msg.isEmpty() || msg.equals("")))
+            {
+                Toast.makeText(RegisterActivity.this,""+msg.toString(),Toast.LENGTH_SHORT).show();
+            }
         }
     } );
     AppController.getInstance().addToRequestQueue( jsonRequest );

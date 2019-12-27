@@ -63,7 +63,7 @@ SharedPreferences preferences;
             tv_house=view.findViewById(R.id.tv_house);
             tv_recivername=view.findViewById(R.id.tv_recivername);
             tv_recivernumber=view.findViewById(R.id.tv_recivernmobile);
-            linear_note = view.findViewById( R.id.linear_note );
+            linear_note =(LinearLayout) view.findViewById(R.id.linear_note);
             txt_note = view.findViewById( R.id.txt_Note );
             txt_date_type = view.findViewById( R.id.txt_date_type );
             linear_date = view.findViewById( R.id.linear_date );
@@ -209,13 +209,13 @@ SharedPreferences preferences;
 
         }
 
-            holder.tv_date.setText(mList.getOn_date());
+            holder.tv_date.setText(getPlaceDate(mList.getPlaced_date()));
 
      //   preferences = activity.getSharedPreferences("lan", MODE_PRIVATE);
 
             String timefrom=mList.getDelivery_time_from();
             String timeto=mList.getDelivery_time_to();
-            String time=timefrom + "-" + timeto;
+            String time=timefrom ;
 
             holder.tv_time.setText(time);
 
@@ -233,7 +233,7 @@ SharedPreferences preferences;
 
 
                     String saleid = mList.getSale_id();
-                    String placedon =mList.getOn_date();
+                    String placedon =getPlaceDate(mList.getPlaced_date());
                     String time = mList.getDelivery_time_from() + "-" + mList.getDelivery_time_to();
                     String item = mList.getTotal_items();
                     String ammount =mList.getTotal_amount();
@@ -285,4 +285,10 @@ SharedPreferences preferences;
 
     }
 
+
+    public String getPlaceDate(String p_date)
+    {
+        String[] str=p_date.split(" ");
+        return str[0].toString();
+    }
 }

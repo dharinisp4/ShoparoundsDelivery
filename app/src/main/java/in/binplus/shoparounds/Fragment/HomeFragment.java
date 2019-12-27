@@ -40,8 +40,10 @@ import in.binplus.shoparounds.Config.BaseURL;
 import in.binplus.shoparounds.LoginActivity;
 import in.binplus.shoparounds.MainActivity;
 import in.binplus.shoparounds.Models.OrderModel;
+import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.CustomVolleyJsonArrayRequest;
+import in.binplus.shoparounds.util.CustomVolleyJsonRequest;
 import in.binplus.shoparounds.util.Session_management;
 
 
@@ -49,9 +51,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 CardView card_delivered , card_upcoming ,card_earnings ,card_allorders ,card_ongoing ;
 RelativeLayout rel_delivered ,rel_upcoming ,rel_earnings,rel_allorders ;
-TextView order_id ,order_amt , vendor_name ,vendor_add,vendor_mobile ,user_name,user_add,user_mobile ;
+TextView order_id ,order_amt , vendor_name ,vendor_add,vendor_mobile ,user_name,user_add,user_mobile ,txt_status;
 ProgressBar delivered_prog ,pending_prog ,cancelled_prog ;
 Session_management session ;
+Module module;
+
 TextView del_percent ,can_percent ,pending_per ,del_tot , cancel_tot,pending_tot ;
     ArrayList<OrderModel> alllist ;
     ArrayList<OrderModel> pending_list;
@@ -76,6 +80,7 @@ String id ;
     View view= inflater.inflate( R.layout.fragment_home, container, false );
         ((MainActivity) getActivity()).setTitle("Dashboard");
 
+        module=new Module(getActivity());
     session = new Session_management( getActivity() );
     card_delivered =view.findViewById( R.id.card_delivered );
     card_upcoming = view.findViewById( R.id.card_upcoming );
@@ -83,6 +88,7 @@ String id ;
     card_allorders=view.findViewById( R.id.card_total_orders );
     card_ongoing=view.findViewById( R.id.card_current_order );
     order_amt =view.findViewById( R.id.order_amount );
+        txt_status =view.findViewById( R.id.txt_status );
     order_id=view.findViewById( R.id.order_id );
     vendor_name=view.findViewById( R.id.vendor_name );
     vendor_add=view.findViewById( R.id.vendor_add );
@@ -100,7 +106,7 @@ String id ;
     delivered_prog=view.findViewById( R.id.delivered );
     del_percent=view.findViewById( R.id.deliveredp );
     del_tot =view.findViewById( R.id.totald );
-
+        id =session.getUserDetails().get( "id" );
 //        view.setOnKeyListener(new View.OnKeyListener() {
 //            @Override
 //            public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -137,16 +143,18 @@ String id ;
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b == true) {
 
-                    active_switch.setText( "Available" );
-                    active_state = 0;
-                    Toast.makeText( getContext(), "on", Toast.LENGTH_LONG ).show();
+
+                    active_state = 1;
+                    setStatus(id,active_state);
+                    //Toast.makeText( getContext(), "on", Toast.LENGTH_LONG ).show();
                 }
                 else
                 {
 
-                    active_switch.setText( "Unavailable" );
-                    active_state =1 ;
-                    Toast.makeText( getContext(), "off", Toast.LENGTH_LONG ).show();
+
+                    active_state = 0 ;
+                    setStatus(id,active_state);
+                 //   Toast.makeText( getContext(), "off", Toast.LENGTH_LONG ).show();
                 }
 
 
@@ -173,7 +181,7 @@ String id ;
     card_earnings.setOnClickListener( this );
     card_delivered.setOnClickListener( this );
 
-    id =session.getUserDetails().get( "id" );
+
 
     String totpending = String.valueOf( pending_list.size() );
 
@@ -182,12 +190,135 @@ String id ;
    return  view ;
     }
 
+    private void setStatus(String id, final int active_state) {
+   progressDialog.show();
+        String json_tag="json_status_tag";
+
+        HashMap<String,String> map=new HashMap<>();
+        map.put("user_id",id);
+        map.put("status",String.valueOf(active_state));
+
+        CustomVolleyJsonRequest customVolleyJsonRequest=new CustomVolleyJsonRequest(Request.Method.POST, BaseURL.SET_CURRENT_STATUS, map, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                progressDialog.dismiss();
+                try
+                {
+                    boolean res=response.getBoolean("responce");
+                    if(res)
+                    {
+                        if(active_state == 1)
+                        {
+                            txt_status.setText( "Engaged" );
+                            txt_status.setBackgroundTintList(getResources().getColorStateList(R.color.green_switch));
+
+                        }
+                        else
+                        {
+                            txt_status.setText( "Free" );
+                            txt_status.setBackgroundTintList(getResources().getColorStateList(R.color.red_switch));
+
+                        }
+
+                       // Toast.makeText(getActivity(),""+response.getString("message").toString(),Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        txt_status.setText( "Free" );
+                        Toast.makeText(getActivity(),""+response.getString("error").toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+             progressDialog.dismiss();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        AppController.getInstance().addToRequestQueue(customVolleyJsonRequest,json_tag);
+
+    }
+
     @Override
     public void onStart() {
         super.onStart();
+        getStatus(id);
         getOrders( id );
 
 
+    }
+
+    private void getStatus(String id) {
+
+        String json_tag="json_get_status";
+        HashMap<String,String> map=new HashMap<>();
+        map.put("user_id",id);
+
+        CustomVolleyJsonRequest customVolleyJsonRequest=new CustomVolleyJsonRequest(Request.Method.POST, BaseURL.GET_CURRENT_STATUS, map, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try
+                {
+                    boolean resp=response.getBoolean("responce");
+                    if(resp)
+                    {
+                        String status="";
+                        JSONArray array=response.getJSONArray("data");
+                        for(int i=0; i<array.length();i++)
+                        {
+                            JSONObject object=array.getJSONObject(0);
+                             status=object.getString("current_status");
+
+                        }
+                        if(status.equals("1"))
+                        {
+                            active_switch.setChecked(true);
+                            txt_status.setText( "Engaged" );
+                            txt_status.setBackgroundTintList(getResources().getColorStateList(R.color.green_switch));
+
+
+                        }
+                        else
+                        {
+                            active_switch.setChecked(false);
+                            txt_status.setText( "Free" );
+                            txt_status.setBackgroundTintList(getResources().getColorStateList(R.color.red_switch));
+
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(getActivity(),""+response.getString("error").toString(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        AppController.getInstance().addToRequestQueue(customVolleyJsonRequest,json_tag);
     }
 
 
@@ -329,8 +460,12 @@ progressDialog.dismiss();
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText( getActivity(),error.getMessage(),Toast.LENGTH_LONG ).show();
+               progressDialog.dismiss();
+                String msg=module.VolleyErrorMessage(error);
+                if(!(msg.isEmpty() || msg.equals("")))
+                {
+                    Toast.makeText(getActivity(),""+msg.toString(),Toast.LENGTH_SHORT).show();
+                }
 
             }
         } );

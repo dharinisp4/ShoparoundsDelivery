@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import in.binplus.shoparounds.LoginActivity;
+import in.binplus.shoparounds.Module.Module;
 import in.binplus.shoparounds.R;
 import in.binplus.shoparounds.util.Session_management;
 
@@ -31,6 +32,7 @@ import static in.binplus.shoparounds.Config.BaseURL.KEY_VEHICLE_NO;
 
 public class MyProfile_Fragment extends Fragment {
 
+    Module module;
 TextView user_id , user_name ,user_mobile, user_add ,user_vno,user_vname ,user_adhar;
 ImageView edit_profile ;
 Session_management session ;
@@ -47,6 +49,7 @@ ProgressDialog progressDialog ;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
       View view = inflater.inflate( R.layout.fragment_my_profile, container, false );
+      module=new Module(getActivity());
       user_id = view.findViewById( R.id.user_id );
       user_add =view.findViewById( R.id.user_add );
       user_name=view.findViewById( R.id.user_name );

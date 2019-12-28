@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
     private  void getLogin(String number , String pass) {
         progressDialog.show();
         HashMap<String, String> params = new HashMap<>();
-        params.put( "user_id", number );
+        params.put( "mobile", number );
         params.put( "password", pass );
 
 
@@ -144,16 +144,17 @@ public class LoginActivity extends AppCompatActivity {
                                 String add =object.getString( "address" );
                                 String pin = object.getString("pincode");
                                // String msg = response.getString( "message" );
-                                Toast.makeText( LoginActivity.this,"Logged in Successfully" ,Toast.LENGTH_LONG).show();
+                               Toast.makeText( LoginActivity.this,"Logged in Successfully" ,Toast.LENGTH_LONG).show();
+                              //  Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
                                 Session_management session = new Session_management( LoginActivity.this );
                                 session.createLoginSession(id,user_id,adhar,name,mobile,"",v_name,v_no,pin,add,"","",""  );
                                 Intent i = new Intent( LoginActivity.this, MainActivity.class );
 
                                 startActivity( i );
                             } else {
-                              //  String msg = response.getString( "message" );
-                                Toast.makeText( LoginActivity.this,"Wrong Username or Password" ,Toast.LENGTH_LONG).show();
-                              //  Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
+                             // String msg = response.getString( "message" );
+                               // Toast.makeText( LoginActivity.this,"Wrong Username or Password" ,Toast.LENGTH_LONG).show();
+                              Toast.makeText( LoginActivity.this, "" + response.getString( "data" ), Toast.LENGTH_LONG ).show();
                             }
                             progressDialog.dismiss();
                         } catch (JSONException e) {

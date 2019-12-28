@@ -64,7 +64,7 @@ public class RegisterActivity extends Activity {
             public void onClick(View view) {
                 String getname = et_name.getText().toString() ;
                 String getmobile =et_mobile.getText().toString();
-                String getadd =et_mobile.getText().toString();
+                String getadd =et_add.getText().toString();
                 String getpass =et_pass.getText().toString();
                 String getcpass=et_cpass.getText().toString();
                 String getvtype = et_vehicle.getText().toString();
@@ -164,7 +164,7 @@ public class RegisterActivity extends Activity {
                     }
                 else
                     {
-                        registerUser( getmobile,getname,getpass,getadhar,getvnum,getvtype,getadd,getadd );
+                        registerUser( getmobile,getname,getpass,getadhar,getvnum,getvtype,getadd,getpin );
                     }
                 }
 

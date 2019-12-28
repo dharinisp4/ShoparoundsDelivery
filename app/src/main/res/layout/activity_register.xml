@@ -85,6 +85,7 @@
         android:textAlignment="center"
         android:textColor="#000"
         android:textColorHint="@color/dark_gray"
+        android:maxLines="1"
         android:textSize="14sp" />
 
     <LinearLayout
@@ -126,6 +127,7 @@
         android:inputType="number"
         android:padding="10dp"
         android:hint="Enter Mobile Number"
+        android:maxLines="1"
         android:textAlignment="center"
         android:textColor="#000"
         android:textColorHint="@color/dark_gray"
@@ -172,6 +174,7 @@
         android:hint="Enter Password"
         android:padding="10dp"
         android:textAlignment="center"
+        android:maxLines="1"
         android:textColor="#000"
         android:textColorHint="@color/dark_gray"
         android:textSize="14sp" />
@@ -214,7 +217,7 @@
         android:fontFamily="@font/chivo"
         android:gravity="center_horizontal"
         android:inputType="textPassword"
-
+        android:maxLines="1"
         android:hint="Re-enter Password"
         android:padding="10dp"
         android:textAlignment="center"
@@ -258,8 +261,9 @@
             android:fontFamily="@font/chivo"
             android:inputType="number"
             android:gravity="center_horizontal"
-
             android:padding="10dp"
+            android:maxLines="1"
+            android:maxLength="12"
             android:hint="Enter Adhaar no"
             android:textAlignment="center"
             android:textColor="#000"
@@ -278,6 +282,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Vehicle Model"
                 android:textColor="#000"
+                android:maxLines="1"
                 android:fontFamily="@font/chivo"
                 android:textSize="14sp" />
             <ImageView
@@ -302,7 +307,7 @@
             android:fontFamily="@font/chivo"
 
             android:gravity="center_horizontal"
-
+            android:maxLines="1"
             android:padding="10dp"
             android:hint="Enter Vehicle Model"
             android:textAlignment="center"
@@ -348,6 +353,7 @@
             android:hint="Enter vehicle number"
             android:textAlignment="center"
             android:textColor="#000"
+            android:maxLines="1"
             android:textColorHint="@color/dark_gray"
             android:textSize="14sp" />
         <LinearLayout
@@ -384,9 +390,7 @@
             android:background="@drawable/xml_textbox_bg"
             android:ems="10"
             android:fontFamily="@font/chivo"
-
             android:gravity="center_horizontal"
-
             android:padding="10dp"
             android:hint="Enter Address"
             android:textAlignment="center"
@@ -427,7 +431,8 @@
             android:background="@drawable/xml_textbox_bg"
             android:ems="10"
             android:fontFamily="@font/chivo"
-
+            android:maxLines="1"
+            android:maxLength="6"
             android:gravity="center_horizontal"
             android:inputType="number"
             android:padding="10dp"

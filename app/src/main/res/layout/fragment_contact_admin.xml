@@ -4,6 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragment.ContactAdminFragmnet">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:layout_marginTop="@dimen/space_20"
         android:layout_width="match_parent"
@@ -163,6 +166,6 @@
 
     </LinearLayout>
 
-
+    </ScrollView>
 
 </RelativeLayout>

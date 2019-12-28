@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="150dp"
@@ -48,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Enter Userid"
+            android:text="Mobile No."
             android:textColor="#000"
             android:fontFamily="@font/chivo"
             android:textSize="14sp" />
@@ -74,9 +78,11 @@
         android:fontFamily="@font/chivo"
         android:gravity="center_horizontal"
         android:padding="10dp"
-        android:hint="Enter your user id"
+        android:hint="Enter your mobile number"
         android:textAlignment="center"
         android:textColor="#000"
+        android:inputType="number"
+        android:maxLength="10"
         android:textColorHint="@color/dark_gray"
         android:textSize="14sp" />
     <LinearLayout
@@ -176,5 +182,5 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="16dp"/>
     </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

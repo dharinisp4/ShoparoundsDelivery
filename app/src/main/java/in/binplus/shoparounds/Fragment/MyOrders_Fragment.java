@@ -195,7 +195,7 @@ public class MyOrders_Fragment extends Fragment {
                                 my_order_model.setOut_date( o_date );
                                 my_order_model.setNote( note );
                                 my_order_modelList.add( my_order_model );
-                                boolean sts = compareDate( obj.getString( "delivered_date" ) );
+                                boolean sts = compareDate( obj.getString( "on_date" ) );
                                 int statuss = Integer.parseInt( status );
                                 if (statuss == 2) {
                                     upcoming_list.add( my_order_model );

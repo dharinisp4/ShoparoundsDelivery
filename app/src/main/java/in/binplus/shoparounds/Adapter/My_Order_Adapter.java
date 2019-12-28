@@ -48,6 +48,7 @@ SharedPreferences preferences;
         public TextView tv_orderno, tv_status, tv_date, tv_time, tv_price, tv_item, relativetextstatus, tv_tracking_date,tv_socity,
                 tv_recivername,tv_recivernumber,tv_house ,txt_note ,txt_date_type;
         LinearLayout cardView ,linear_note ,linear_date;
+        CardView card_note ;
          RelativeLayout rel_status;
         public MyViewHolder(View view) {
             super(view);
@@ -63,12 +64,11 @@ SharedPreferences preferences;
             tv_house=view.findViewById(R.id.tv_house);
             tv_recivername=view.findViewById(R.id.tv_recivername);
             tv_recivernumber=view.findViewById(R.id.tv_recivernmobile);
-            linear_note =(LinearLayout) view.findViewById(R.id.linear_note);
+          //  linear_note =(LinearLayout) view.findViewById(R.id.linear_note);
+            card_note = (CardView)view.findViewById( R.id.card_note );
             txt_note = view.findViewById( R.id.txt_Note );
             txt_date_type = view.findViewById( R.id.txt_date_type );
             linear_date = view.findViewById( R.id.linear_date );
-
-
             cardView = view.findViewById(R.id.card_view);
             rel_status = (RelativeLayout) view.findViewById(R.id.rel_status);
 //            view.setOnClickListener(new View.OnClickListener() {
@@ -130,14 +130,34 @@ SharedPreferences preferences;
                 holder.relativetextstatus.setText(activity.getResources().getString(R.string.pending));
                 holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.dark_gray));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.dark_gray));
-                holder.txt_date_type.setText( "Placed on :" );
-                holder.tv_tracking_date.setText(mList.getPlaced_date());
+                holder.txt_date_type.setText( "Delivery Date" );
+                holder.tv_tracking_date.setText(mList.getOn_date());
+                if (!(mList.getNote() ==""))
+                {
+                    holder.card_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+
+                }
+                else
+                {
+                    holder.card_note.setVisibility( View.GONE );
+                }
             }
             else if (mList.getStatus().equals("1")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.confirm));
                 holder.tv_status.setTextColor(activity.getResources().getColor( R.color.orange )  );
-                holder.txt_date_type.setText( "Order Confirmed on :" );
-                holder.tv_tracking_date.setText(mList.getConfirm_date());
+                holder.txt_date_type.setText( "Delivery Date :" );
+                holder.tv_tracking_date.setText(mList.getOn_date());
+                if (!(mList.getNote() ==""))
+                {
+                    holder.card_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+
+                }
+                else
+                {
+                    holder.card_note.setVisibility( View.GONE );
+                }
 //                holder.relativetextstatus.setText(activity.getResources().getString(R.string.confirm));
 //                holder.tv_status.setTextColor( Color.BLACK );
 //                holder.relativetextstatus.setTextColor( Color.BLACK );
@@ -148,8 +168,18 @@ SharedPreferences preferences;
             else if (mList.getStatus().equals("2")) {
                 holder.tv_status.setText("Out for Delivery");
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.text_color));
-                holder.txt_date_type.setText( "Out for delivery on :" );
-                holder.tv_tracking_date.setText(mList.getOut_date());
+                holder.txt_date_type.setText( "Delivery Date :" );
+                holder.tv_tracking_date.setText(mList.getOn_date());
+                if (!(mList.getNote() ==""))
+                {
+                    holder.card_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+
+                }
+                else
+                {
+                    holder.card_note.setVisibility( View.GONE );
+                }
 //                holder.relativetextstatus.setText(activity.getResources().getString(R.string.outfordeliverd));
 //
 //                holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.text_color) );
@@ -167,6 +197,16 @@ SharedPreferences preferences;
 
                 holder.cardView.setClickable( false );
                 holder.cardView.setEnabled( false );
+                if (!(mList.getNote() ==""))
+                {
+                    holder.card_note.setVisibility(View.VISIBLE);
+                    holder.txt_note.setText(mList.getNote());
+
+                }
+                else
+                {
+                    holder.card_note.setVisibility( View.GONE );
+                }
             }
             else if (mList.getStatus().equals("4")) {
                 holder.tv_status.setText(activity.getResources().getString(R.string.delivered));
@@ -177,12 +217,12 @@ SharedPreferences preferences;
           //      holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
                 if (!(mList.getNote().equals( "" )))
                 {
-                    holder.linear_note.setVisibility(View.VISIBLE);
+                    holder.card_note.setVisibility(View.VISIBLE);
                     holder.txt_note.setText(mList.getNote());
                 }
                 else
                 {
-                    holder.linear_note.setVisibility(View.GONE);
+                    holder.card_note.setVisibility(View.GONE);
                 }
             }
             else if (mList.getStatus().equals("5")) {
@@ -190,17 +230,17 @@ SharedPreferences preferences;
              //   holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
                 holder.tv_status.setTextColor(activity.getResources().getColor(R.color.color_1));
                 holder.txt_date_type.setText( "Out for delivery on :" );
-                holder.tv_tracking_date.setText(mList.getOut_date());
+                holder.tv_tracking_date.setText(mList.getOn_date());
             //    holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
                 if (!(mList.getNote() ==""))
                 {
-                    holder.linear_note.setVisibility(View.VISIBLE);
+                    holder.card_note.setVisibility(View.VISIBLE);
                     holder.txt_note.setText(mList.getNote());
 
                 }
                 else
                 {
-                    holder.linear_note.setVisibility( View.GONE );
+                    holder.card_note.setVisibility( View.GONE );
                 }
 
             }
@@ -234,6 +274,10 @@ SharedPreferences preferences;
 
                     String saleid = mList.getSale_id();
                     String placedon =getPlaceDate(mList.getPlaced_date());
+                    String out_date = mList.getOut_date();
+                    String on_date = mList.getOn_date();
+                    String delivery_date = mList.getDelivered_date();
+                    String confirm_date = mList.getConfirm_date();
                     String time = mList.getDelivery_time_from() + "-" + mList.getDelivery_time_to();
                     String item = mList.getTotal_items();
                     String ammount =mList.getTotal_amount();
@@ -245,6 +289,10 @@ SharedPreferences preferences;
                     Intent intent = new Intent(activity, OrderDetail.class);
                     intent.putExtra("sale_id", saleid);
                     intent.putExtra("placedon", placedon);
+                    intent.putExtra( "out_date",out_date );
+                    intent.putExtra( "on_date",on_date );
+                    intent.putExtra( "delivery_date",delivery_date );
+                    intent.putExtra( "confirm_date",confirm_date );
                     intent.putExtra("time", time);
                     intent.putExtra("item", item);
                     intent.putExtra("ammount", ammount);

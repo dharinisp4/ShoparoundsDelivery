@@ -425,7 +425,7 @@ String id ;
                                     delivered_list.add( model );
                                 }
 
-                                else if (status == 3 && !(note.equals("")))
+                                else if (status == 5 && !(note.equals("")))
                                 {
                                     cancelled_list.add( model );
                                 }

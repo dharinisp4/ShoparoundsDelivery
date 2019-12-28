@@ -146,6 +146,10 @@ public class OrderDetail extends AppCompatActivity {
         String item = getIntent().getStringExtra("item");
         String amount = getIntent().getStringExtra("ammount");
         String stats = getIntent().getStringExtra("status");
+        String out_date =getIntent().getStringExtra( "out_date" );
+        String on_date =getIntent().getStringExtra( "on_date" );
+        String delivery_date =getIntent().getStringExtra( "delivery_date");
+        String confirm_date =getIntent().getStringExtra( "confirm_date");
 
         Mark_Delivered = (RelativeLayout) findViewById(R.id.btn_mark_delivered);
         Mark_Delivered.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +166,8 @@ public class OrderDetail extends AppCompatActivity {
             tv_status.setText(getResources().getString(R.string.pending));
             relativetextstatus.setText(getResources().getString(R.string.pending));
             rel_status.setBackgroundColor( this.getResources().getColor(R.color.dark_gray));
+            Mark_cancelled.setVisibility( View.GONE );
+            Mark_Delivered.setVisibility( View.GONE );
 
 
         } else if (stats.equals("1")) {
@@ -169,13 +175,17 @@ public class OrderDetail extends AppCompatActivity {
             tv_status.setTextColor( Color.BLACK );
             relativetextstatus.setText(getResources().getString(R.string.confirm));
             relativetextstatus.setTextColor( Color.BLACK );
-            txt_date_type.setText( "Confirmed On :" );
+            txt_date_type.setText( "Delivery Date:" );
+            tv_tracking_date.setText(on_date);
             rel_status.setBackgroundColor(this.getResources().getColor(R.color.yelow));
+            Mark_cancelled.setVisibility( View.GONE );
+            Mark_Delivered.setVisibility( View.GONE );
         } else if (stats.equals("2")) {
             tv_status.setText(getResources().getString(R.string.outfordeliverd));
             relativetextstatus.setText(getResources().getString(R.string.outfordeliverd));
-
             rel_status.setBackgroundColor( this.getResources().getColor(R.color.text_color));
+            txt_date_type.setText( "Delivery Date:" );
+            tv_tracking_date.setText(on_date);
         }
         else if (stats.equals("3")) {
            tv_status.setText("Cancelled");
@@ -183,11 +193,15 @@ public class OrderDetail extends AppCompatActivity {
             txt_date_type.setText( "Cancelled On :" );
             rel_status.setBackgroundColor(OrderDetail.this.getResources().getColor(R.color.color_3));
             tv_status.setTextColor(OrderDetail.this.getResources().getColor(R.color.color_3));
+            Mark_cancelled.setVisibility( View.GONE );
+            Mark_Delivered.setVisibility( View.GONE );
+
 
         }
         else if (stats.equals("4")) {
             tv_status.setText(getResources().getString(R.string.delivered));
             txt_date_type.setText( "Delivered On :" );
+            tv_tracking_date.setText(delivery_date);
             Mark_Delivered.setVisibility( View.GONE);
             Mark_cancelled.setVisibility( View.GONE );
             relativetextstatus.setText(getResources().getString(R.string.delivered));
@@ -198,6 +212,8 @@ public class OrderDetail extends AppCompatActivity {
             //   holder.relativetextstatus.setText(activity.getResources().getString(R.string.delivered));
          tv_status.setTextColor(OrderDetail.this.getResources().getColor(R.color.color_1));
             //    holder.rel_status.setBackgroundColor( activity.getResources().getColor(R.color.add_cart_img));
+            txt_date_type.setText( "Delivery Date:" );
+            tv_tracking_date.setText(on_date);
 
         }
 
@@ -205,7 +221,7 @@ public class OrderDetail extends AppCompatActivity {
         tv_date.setText(placed_on);
         tv_time.setText(time);
         tv_item.setText(item);
-        tv_tracking_date.setText(placed_on);
+
         tv_price.setText(getResources().getString(R.string.currency) + amount);
 
 
@@ -214,6 +230,7 @@ public class OrderDetail extends AppCompatActivity {
     private void makeGetOrderDetailRequest(String sale_id) {
         String tag_json_obj = "json_order_detail_req";
         Map<String, String> params = new HashMap<String, String>();
+
         params.put("sale_id", sale_id);
 
         CustomVolleyJsonArrayRequest jsonObjReq = new CustomVolleyJsonArrayRequest( Request.Method.POST,
@@ -221,6 +238,7 @@ public class OrderDetail extends AppCompatActivity {
 
             @Override
             public void onResponse(JSONArray response) {
+                Log.d( "Order Details", String.valueOf( response ) );
                 Gson gson = new Gson();
                 Type listType = new TypeToken<List<My_order_detail_model>>() {
                 }.getType();

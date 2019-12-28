@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,6 +21,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import in.binplus.shoparounds.Config.BaseURL;
@@ -65,10 +69,11 @@ public class My_order_detail_adapter extends RecyclerView.Adapter<My_order_detai
     @Override
     public void onBindViewHolder(My_order_detail_adapter.MyViewHolder holder, int position) {
         final My_order_detail_model mList = modelList.get(position);
+        String product_image = getFirstImage( mList.getProduct_image(),activity );
 
         Glide.with(context)
-                .load( BaseURL.IMG_PRODUCT_URL + mList.getProduct_image())
-                .centerCrop()
+                .load( BaseURL.IMG_PRODUCT_URL +product_image )
+
                 .placeholder(R.drawable.iconn)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -139,4 +144,29 @@ public class My_order_detail_adapter extends RecyclerView.Adapter<My_order_detai
         return modelList.size();
     }
 
+    public String getFirstImage(String product_images, Context context)
+    {
+        String first_image="";
+        try {
+            List<String> image_list=new ArrayList<>();
+            JSONArray array = new JSONArray(product_images);
+            //Toast.makeText(this,""+product_images,Toast.LENGTH_LONG).show();
+            if (product_images.equals(null)) {
+                Toast.makeText(context, "There is no image for this product", Toast.LENGTH_LONG).show();
+            } else {
+                for (int i = 0; i <= array.length() - 1; i++) {
+                    image_list.add(array.get(i).toString());
+
+                }
+
+                first_image=image_list.get(0).toString();
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+            //  Toast.makeText(context,""+ex.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+        return first_image;
+    }
 }

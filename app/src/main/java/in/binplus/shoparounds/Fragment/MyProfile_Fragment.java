@@ -33,7 +33,7 @@ import static in.binplus.shoparounds.Config.BaseURL.KEY_VEHICLE_NO;
 public class MyProfile_Fragment extends Fragment {
 
     Module module;
-TextView user_id , user_name ,user_mobile, user_add ,user_vno,user_vname ,user_adhar;
+TextView user_id , user_name ,user_mobile, user_add ,user_vno,user_vname ,user_adhar ,update_pass;
 ImageView edit_profile ;
 Session_management session ;
 
@@ -57,6 +57,7 @@ ProgressDialog progressDialog ;
       user_mobile = view.findViewById( R.id.user_phone );
       user_vname=view.findViewById( R.id.v_name );
       user_vno =view.findViewById( R.id.v_no );
+      update_pass=view.findViewById( R.id.change_pass );
       edit_profile=view.findViewById( R.id.img_edit );
 
         progressDialog=new ProgressDialog( getActivity());
@@ -84,7 +85,7 @@ ProgressDialog progressDialog ;
       user_vname.setText( session.getUserDetails().get( KEY_VEHICLE_NAME ) );
       user_vno.setText( session.getUserDetails().get( KEY_VEHICLE_NO ) );
 
-       edit_profile.setOnClickListener( new View.OnClickListener() {
+       update_pass.setOnClickListener( new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                progressDialog.show();

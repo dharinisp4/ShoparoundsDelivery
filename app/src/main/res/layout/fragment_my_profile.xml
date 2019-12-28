@@ -27,7 +27,8 @@
             android:padding="10dp"
        android:layout_alignParentEnd="true"
         android:background="@drawable/icons8_edit_60px"
-        android:backgroundTint="@color/white"/>
+        android:backgroundTint="@color/white"
+            android:visibility="gone"/>
 
 
 
@@ -65,7 +66,8 @@
                android:text="user_id"
                android:textColor="@android:color/black"
                android:textStyle="bold"
-               android:fontFamily="@font/chivo"/>
+               android:fontFamily="@font/chivo"
+               android:visibility="gone"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -241,7 +243,18 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-
+        <TextView
+            android:id="@+id/change_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:textAlignment="viewEnd"
+            android:text="Change Password"
+            android:layout_marginRight="@dimen/space_10"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/chivo"/>
 </LinearLayout>
     </ScrollView>
 

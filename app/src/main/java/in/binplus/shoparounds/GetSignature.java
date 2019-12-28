@@ -185,7 +185,7 @@ public class GetSignature extends AppCompatActivity {
                     .startUpload(); //Starting the upload
             Intent intent = new Intent(GetSignature.this, MainActivity.class);
             startActivity(intent);
-            Toast.makeText(this, "Upload Successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Order is marked as Delivered", Toast.LENGTH_SHORT).show();
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
